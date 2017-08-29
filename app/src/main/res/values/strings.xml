@@ -13,4 +13,5 @@
     <string name="CarSpaceSelectionText">Car Spaces</string>
     <string name="parkedVehicles">Parked Vehicles:</string>
     <string name="reportVehicle">Report Vehicle</string>
+    <string name="carSpaceHeading">Car Spaces</string>
 </resources>

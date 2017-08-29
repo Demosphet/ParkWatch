@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Map" />
-        <activity android:name=".CapSpaces"></activity>
+        <activity android:name=".CapSpaces" />
+        <activity android:name=".ReportHistory"></activity>
     </application>
 
 </manifest>
