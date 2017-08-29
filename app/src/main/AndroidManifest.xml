@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".Map" />
         <activity android:name=".CapSpaces" />
-        <activity android:name=".ReportHistory"></activity>
+        <activity android:name=".ReportHistory" />
+        <activity android:name=".ReportVehicle"></activity>
     </application>
 
 </manifest>

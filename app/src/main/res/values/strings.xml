@@ -15,4 +15,12 @@
     <string name="reportVehicle">Report Vehicle</string>
     <string name="carSpaceHeading">Car Spaces</string>
     <string name="reportHistoryHeading">Report History</string>
+    <string name="reportVehicleHeading">Report Vehicle</string>
+    <string name="registrationNumber">Registration Number:</string>
+    <string name="vehicleMake">Vehicle Make:</string>
+    <string name="vehicleModel">Vehicle Model:</string>
+    <string name="vehicleColour">Vehicle Colour:</string>
+    <string name="vehicleType">Vehicle Type:</string>
+    <string name="attachImage">Attach Image</string>
+    <string name="gpsPosition">GPS Position</string>
 </resources>
