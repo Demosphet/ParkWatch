@@ -10,4 +10,7 @@
     <string name="mapHeadingText">Map View of the Park</string>
     <string name="mapHeading">Map View of the Park</string>
     <string name="logInButton">Log In</string>
+    <string name="CarSpaceSelectionText">Car Spaces</string>
+    <string name="parkedVehicles">Parked Vehicles:</string>
+    <string name="reportVehicle">Report Vehicle</string>
 </resources>
