@@ -8,4 +8,5 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="mapHeadingText">Map View of the Park</string>
+    <string name="mapHeading">Map View of the Park</string>
 </resources>
