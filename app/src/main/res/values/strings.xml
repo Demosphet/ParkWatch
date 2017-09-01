@@ -26,4 +26,8 @@
     <string name="captureImage">Capture Image</string>
     <string name="logGpsCoordinates">Log GPS Co-ordinates</string>
     <string name="placeHolderText">Place Holder Text</string>
+    <string name="trafficCount">Traffic on</string>
+    <string name="gateText">Gate</string>
+    <string name="inflowText">Inflow:</string>
+    <string name="outflowText">Outflow:</string>
 </resources>
