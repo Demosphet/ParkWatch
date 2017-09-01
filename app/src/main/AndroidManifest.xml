@@ -20,6 +20,9 @@
         <activity android:name=".CapSpaces" />
         <activity android:name=".ReportHistory" />
         <activity android:name=".ReportVehicle"></activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCN7DTpwDYpxOallwxx4cXZwCXZDUrw6sE"/>
     </application>
 
 </manifest>

@@ -30,4 +30,5 @@
     <string name="gateText">Gate</string>
     <string name="inflowText">Inflow:</string>
     <string name="outflowText">Outflow:</string>
+    <string name="google_android_map_api_key"> Map API key </string>
 </resources>
