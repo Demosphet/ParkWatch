@@ -25,4 +25,5 @@
     <string name="gpsPosition">GPS Position</string>
     <string name="captureImage">Capture Image</string>
     <string name="logGpsCoordinates">Log GPS Co-ordinates</string>
+    <string name="placeHolderText">Place Holder Text</string>
 </resources>
