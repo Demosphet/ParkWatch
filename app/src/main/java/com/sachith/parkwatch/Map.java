@@ -1,5 +1,6 @@
 package com.sachith.parkwatch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -24,6 +25,8 @@ public class Map extends AppCompatActivity {
                 {
                     case R.id.carSpaces:
                         Toast.makeText(Map.this, "Car Spaces", Toast.LENGTH_SHORT).show();
+                        Intent intent1 = new Intent(Map.this, CapSpaces.class);
+                        startActivity(intent1);
                         break;
 
                     case R.id.gateOverview:
@@ -32,6 +35,8 @@ public class Map extends AppCompatActivity {
 
                     case R.id.report:
                         Toast.makeText(Map.this, "Report Vehicle", Toast.LENGTH_SHORT).show();
+                        Intent intent2 = new Intent(Map.this, ReportHistory.class);
+                        startActivity(intent2);
                         break;
                 }
 

@@ -18,10 +18,17 @@
         app:showAsAction="ifRoom"/>
 
     <item
-        android:id="@+id/report"
+        android:id="@+id/report_history"
+        android:enabled="true"
+        android:icon="@drawable/ic_report_history"
+        android:title="Report History"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/report_vehicle"
         android:enabled="true"
         android:icon="@drawable/ic_report"
-        android:title="Report"
+        android:title="Report Vehicle"
         app:showAsAction="ifRoom"/>
 
 </menu>
