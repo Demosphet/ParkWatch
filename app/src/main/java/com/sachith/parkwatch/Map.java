@@ -23,14 +23,14 @@ public class Map extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch(item.getItemId())
                 {
+                    case R.id.gateOverview:
+                        Toast.makeText(Map.this, "Gate Overview", Toast.LENGTH_SHORT).show();
+                        break;
+
                     case R.id.carSpaces:
                         Toast.makeText(Map.this, "Car Spaces", Toast.LENGTH_SHORT).show();
                         Intent intent1 = new Intent(Map.this, CapSpaces.class);
                         startActivity(intent1);
-                        break;
-
-                    case R.id.gateOverview:
-                        Toast.makeText(Map.this, "Gate Overview", Toast.LENGTH_SHORT).show();
                         break;
 
                     case R.id.report_history:
