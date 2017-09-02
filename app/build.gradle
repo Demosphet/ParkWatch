@@ -31,4 +31,7 @@ dependencies {
     compile 'com.android.support:support-vector-drawable:26.+'
     compile 'com.google.android.gms:play-services-maps:11.0.4'
     testCompile 'junit:junit:4.12'
+
+    //Add Library
+    compile 'com.android.support:design:26.0.0-alpha1'
 }

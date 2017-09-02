@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <item
+        android:id="@+id/carSpaces"
+        android:enabled="true"
+        android:icon="@drawable/ic_car_spaces"
+        android:title="Car Spaces"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/gateOverview"
+        android:enabled="true"
+        android:icon="@drawable/ic_gate_overview"
+        android:title="Gate Overview"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:id="@+id/report"
+        android:enabled="true"
+        android:icon="@drawable/ic_report"
+        android:title="Report"
+        app:showAsAction="ifRoom"/>
+
+</menu>
