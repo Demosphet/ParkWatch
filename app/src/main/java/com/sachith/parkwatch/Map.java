@@ -33,10 +33,16 @@ public class Map extends AppCompatActivity {
                         Toast.makeText(Map.this, "Gate Overview", Toast.LENGTH_SHORT).show();
                         break;
 
-                    case R.id.report:
+                    case R.id.report_history:
                         Toast.makeText(Map.this, "Report Vehicle", Toast.LENGTH_SHORT).show();
                         Intent intent2 = new Intent(Map.this, ReportHistory.class);
                         startActivity(intent2);
+                        break;
+
+                    case R.id.report_vehicle:
+                        Toast.makeText(Map.this, "Report Vehicle", Toast.LENGTH_SHORT).show();
+                        Intent intent3 = new Intent(Map.this, ReportVehicle.class);
+                        startActivity(intent3);
                         break;
                 }
 

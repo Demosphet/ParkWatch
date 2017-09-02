@@ -7,28 +7,28 @@
         android:id="@+id/carSpaces"
         android:enabled="true"
         android:icon="@drawable/ic_car_spaces"
-        android:title="Car Spaces"
+        android:title="Car\nSpaces"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/gateOverview"
         android:enabled="true"
         android:icon="@drawable/ic_gate_overview"
-        android:title="Gate Overview"
+        android:title="Gate\nOverview"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/report_history"
         android:enabled="true"
         android:icon="@drawable/ic_report_history"
-        android:title="Report History"
+        android:title="Report\nHistory"
         app:showAsAction="ifRoom"/>
 
     <item
         android:id="@+id/report_vehicle"
         android:enabled="true"
         android:icon="@drawable/ic_report"
-        android:title="Report Vehicle"
+        android:title="Report\nVehicle"
         app:showAsAction="ifRoom"/>
 
 </menu>
