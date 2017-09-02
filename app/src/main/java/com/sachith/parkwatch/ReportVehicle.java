@@ -35,18 +35,20 @@ public class ReportVehicle extends AppCompatActivity {
 
                     case R.id.carSpaces:
                         Toast.makeText(ReportVehicle.this, "Car Spaces", Toast.LENGTH_SHORT).show();
+                        Intent intent2 = new Intent(ReportVehicle.this, CapSpaces.class);
+                        startActivity(intent2);
                         break;
 
                     case R.id.gateOverview:
                         Toast.makeText(ReportVehicle.this, "Gate Overview", Toast.LENGTH_SHORT).show();
-                        Intent intent2 = new Intent(ReportVehicle.this, Map.class);
-                        startActivity(intent2);
+                        Intent intent3 = new Intent(ReportVehicle.this, Map.class);
+                        startActivity(intent3);
                         break;
 
                     case R.id.report_vehicle:
                         Toast.makeText(ReportVehicle.this, "Report Vehicle", Toast.LENGTH_SHORT).show();
-                        Intent intent3 = new Intent(ReportVehicle.this, ReportVehicle.class);
-                        startActivity(intent3);
+                        Intent intent4 = new Intent(ReportVehicle.this, ReportVehicle.class);
+                        startActivity(intent4);
                         break;
                 }
 

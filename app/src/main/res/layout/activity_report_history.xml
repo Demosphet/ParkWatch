@@ -34,13 +34,29 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="72dp"
-        app:layout_constraintHorizontal_bias="0.517">
+        app:layout_constraintHorizontal_bias="0.517"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
+        <TextView
+            android:id="@+id/placeHolderTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="@string/placeHolderText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </android.support.constraint.ConstraintLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:layout_constraintBottom_toBottomOf="parent"
