@@ -32,7 +32,8 @@
             android:id="@+id/mapFragment"
             android:name="com.google.android.gms.maps.MapFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="960px"
+            android:layout_weight="0.5" />
 
     </LinearLayout>
 
@@ -52,7 +53,8 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
 
                     <TextView
                         android:id="@+id/trafficeCountTextView"
@@ -70,7 +72,8 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:padding="5dp">
 
                     <TextView
                         android:id="@+id/gateTextView"
@@ -81,7 +84,9 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="5dp">
 
                     <TextView
                         android:id="@+id/inflowTextView"
@@ -99,7 +104,9 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
+                    android:paddingTop="10dp">
 
                     <TextView
                         android:id="@+id/gateTextView2"
@@ -110,7 +117,8 @@
 
                 <TableRow
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:paddingLeft="5dp">
 
                     <TextView
                         android:id="@+id/outflowTextView2"
