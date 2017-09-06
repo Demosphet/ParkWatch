@@ -1,5 +1,6 @@
 package com.sachith.parkwatch;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,14 +10,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-public class Map extends AppCompatActivity {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
 
+public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
+    GoogleMap mGoogleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+
+        if(googleServicesAvailable()){
+            Toast.makeText(this, "Connection with Play services established", Toast.LENGTH_LONG).show();
+            setContentView(R.layout.activity_map);
+            initMap();
+        } else {
+            //No Google Maps Layout
+        }
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -56,5 +70,28 @@ public class Map extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void initMap(){
+        MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.mapFragment);
+        mapFragment.getMapAsync(this);
+    }
+
+    public boolean googleServicesAvailable () {
+        GoogleApiAvailability api = GoogleApiAvailability.getInstance();
+        int isAvailable = api.isGooglePlayServicesAvailable(this);
+        if(isAvailable == ConnectionResult.SUCCESS) {
+            return true;
+        } else if (api.isUserResolvableError(isAvailable)){
+            Dialog dialog = api.getErrorDialog(this, isAvailable, 0);
+            dialog.show();
+        } else {
+            Toast.makeText(this, "Can not connect to Play services", Toast.LENGTH_LONG).show();
+        }
+        return false;
+    }
+
+    public void onMapReady (GoogleMap googleMap){
+        mGoogleMap = googleMap;
     }
 }
