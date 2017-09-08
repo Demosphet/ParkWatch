@@ -1,6 +1,5 @@
 package com.sachith.parkwatch;
 
-import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -31,6 +30,9 @@ public class ReportVehicle extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener locationListener;
 
+    Double longitude;
+    Double latitude;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,6 @@ public class ReportVehicle extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         configureButton();
-
-
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -117,18 +117,20 @@ public class ReportVehicle extends AppCompatActivity {
         FusedLocationProviderClient mFusedLocationProviderClient;
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
-        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         } else {
             mFusedLocationProviderClient.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                 @Override
                 public void onSuccess(Location location) {
                     if (location != null) {
-                        gpsCoordinates.setText("Latitude: " + location.getLatitude() + "\n " + "Longitude: " + location.getLongitude());
+                        longitude = location.getLongitude();
+                        latitude = location.getLatitude();
+                        String locationMsg = "Latitude: " + latitude + "\n " + "Longitude: " + longitude;
+                        gpsCoordinates.setText(locationMsg);
                     }
                 }
             });
         }
     }
-}
 }
