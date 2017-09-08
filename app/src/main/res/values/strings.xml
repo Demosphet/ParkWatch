@@ -31,4 +31,6 @@
     <string name="inflowText">Inflow:</string>
     <string name="outflowText">Outflow:</string>
     <string name="google_android_map_api_key"> Map API key </string>
+    <string name="gpsCoordinateHeading">GPS Coordinates</string>
+    <string name="gpsCoordinates">Coordinates</string>
 </resources>

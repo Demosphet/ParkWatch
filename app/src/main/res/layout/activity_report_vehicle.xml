@@ -202,7 +202,7 @@
 
             <TextView
                 android:id="@+id/gpsTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingBottom="10dp"
                 android:paddingLeft="5dp"
@@ -211,10 +211,32 @@
 
             <Button
                 android:id="@+id/gpsPositionButton"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/logGpsCoordinates" />
 
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/gpsCoordinateHeading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="10dp"
+                android:text="@string/gpsCoordinateHeading" />
+
+            <TextView
+                android:id="@+id/gpsCoordinates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/gpsCoordinates" />
         </TableRow>
 
     </TableLayout>
