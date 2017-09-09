@@ -2,10 +2,12 @@ package com.sachith.parkwatch;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -15,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +28,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 public class ReportVehicle extends AppCompatActivity {
 
+    public static final int CAMERA_REQUEST = 10;
     private Button gpsPositionButton;
     private TextView gpsCoordinates;
     private LocationManager locationManager;
@@ -32,6 +36,7 @@ public class ReportVehicle extends AppCompatActivity {
 
     Double longitude;
     Double latitude;
+    private ImageView capturedImage;
 
 
     @Override
@@ -44,6 +49,8 @@ public class ReportVehicle extends AppCompatActivity {
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
         configureButton();
+
+        capturedImage = (ImageView) findViewById(R.id.capturedImage);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -131,6 +138,23 @@ public class ReportVehicle extends AppCompatActivity {
                     }
                 }
             });
+        }
+    }
+
+    public void buttonTakePhotoClicked(View v){
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode == RESULT_OK){
+            if(requestCode == CAMERA_REQUEST){
+                Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
+                capturedImage.setImageBitmap(cameraImage);
+            }
         }
     }
 }

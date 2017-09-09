@@ -33,7 +33,8 @@
         android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/reportVehicleTextView">
+        app:layout_constraintTop_toBottomOf="@+id/reportVehicleTextView"
+        android:id="@+id/tableLayout">
 
         <TableRow
             android:layout_width="match_parent"
@@ -191,6 +192,7 @@
                 android:id="@+id/attachImageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="buttonTakePhotoClicked"
                 android:text="@string/captureImage" />
 
         </TableRow>
@@ -236,9 +238,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
         </TableRow>
 
     </TableLayout>
+
+    <ImageView
+        android:id="@+id/capturedImage"
+        android:layout_width="250dp"
+        android:layout_height="140dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="0dp"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
+        app:srcCompat="@color/transparent" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
