@@ -32,6 +32,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
             //No Google Maps Layout
         }
 
+        //Declaring the bottom navigation bar elements
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
         //Bottom Navigation bar declarations
@@ -39,6 +40,8 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
 
+        //Creating a switch statement to determine where to point the user when interacting with
+        // the bottom navigation bar
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -73,11 +76,13 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
     }
 
+    //Creating and instance of a Map View fragment
     private void initMap(){
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.mapFragment);
         mapFragment.getMapAsync(this);
     }
 
+    //Interfacing in Google Map API
     public boolean googleServicesAvailable () {
         GoogleApiAvailability api = GoogleApiAvailability.getInstance();
         int isAvailable = api.isGooglePlayServicesAvailable(this);
@@ -92,6 +97,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         return false;
     }
 
+    //Interfacing in Google Map API
     public void onMapReady (GoogleMap googleMap){
         mGoogleMap = googleMap;
     }

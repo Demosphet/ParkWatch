@@ -54,6 +54,7 @@ public class ReportVehicle extends AppCompatActivity {
 
         capturedImage = (ImageView) findViewById(R.id.capturedImage);
 
+        //Declaring the bottom navigation bar elements
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
         //Bottom Navigation bar declarations
@@ -64,6 +65,8 @@ public class ReportVehicle extends AppCompatActivity {
         //Created an instance of a database
         myDb = new DatabaseHelper(this);
 
+        //Creating a switch statement to determine where to point the user when interacting with
+        // the bottom navigation bar
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -98,6 +101,7 @@ public class ReportVehicle extends AppCompatActivity {
         });
     }
 
+    //Checking the Request Permission of the "configureButton" function
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -118,6 +122,7 @@ public class ReportVehicle extends AppCompatActivity {
         );
     }
 
+    //Setting up the location services to get the GPS coordinates from the inbuilt GPS module
     protected void createLocationRequest () {
         LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
         boolean enabled = service.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -147,11 +152,13 @@ public class ReportVehicle extends AppCompatActivity {
         }
     }
 
+    //Creating the intent to take the user to the Camera Intent
     public void buttonTakePhotoClicked(View v){
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
+    //Capturing an image and showing a preview within the application
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
