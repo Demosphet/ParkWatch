@@ -17,7 +17,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,15 @@ public class ReportVehicle extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener locationListener;
 
+    private EditText registrationNumberEditText;
+    private EditText vehicleMakeEditText;
+    private EditText vehicleModelEditText;
+    private EditText vehicleColourEditText;
+    private EditText vehicleTypeEditText;
+    private Spinner carSpacesSpinner;
+    private Button addDataButton;
+    private Button viewDataButton;
+
     Double longitude;
     Double latitude;
     private ImageView capturedImage;
@@ -46,13 +57,25 @@ public class ReportVehicle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_vehicle);
 
+        registrationNumberEditText = (EditText) findViewById(R.id.registrationNumberEditText);
+        vehicleMakeEditText = (EditText) findViewById(R.id.vehicleMakeEditText);
+        vehicleModelEditText = (EditText) findViewById(R.id.vehicleModelEditText);
+        vehicleColourEditText = (EditText) findViewById(R.id.vehicleColourEditText);
+        vehicleTypeEditText = (EditText) findViewById(R.id.vehicleTypeEditText);
+        carSpacesSpinner = (Spinner) findViewById(R.id.carSpacesSpinner);   //Use this later on
+
+        addDataButton = (Button) findViewById(R.id.addDataButton);
+        viewDataButton = (Button) findViewById(R.id.viewDataButton);
+
         gpsPositionButton = (Button) findViewById(R.id.gpsPositionButton);
         gpsCoordinates = (TextView) findViewById(R.id.gpsCoordinates);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
-        configureButton();
-
         capturedImage = (ImageView) findViewById(R.id.capturedImage);
+
+        configureButton();
+        addDataFunction();
+
 
         //Declaring the bottom navigation bar elements
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -169,5 +192,24 @@ public class ReportVehicle extends AppCompatActivity {
                 capturedImage.setImageBitmap(cameraImage);
             }
         }
+    }
+
+    public void addDataFunction(){
+        addDataButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean isInserted = myDb.insertData(registrationNumberEditText.getText().toString(),
+                        vehicleMakeEditText.getText().toString(),
+                        vehicleModelEditText.getText().toString(),
+                        vehicleColourEditText.getText().toString(),
+                        vehicleTypeEditText.getText().toString());
+
+                if(isInserted){
+                    Toast.makeText(ReportVehicle.this, "Data Inserted", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(ReportVehicle.this, "Data Failed to Insert", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 }
