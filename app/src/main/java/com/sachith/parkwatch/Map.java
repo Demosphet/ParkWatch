@@ -34,6 +34,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
+        //Bottom Navigation bar declarations
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(1);
         menuItem.setChecked(true);
