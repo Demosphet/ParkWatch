@@ -33,4 +33,6 @@
     <string name="google_android_map_api_key"> Map API key </string>
     <string name="gpsCoordinateHeading">GPS Coordinates</string>
     <string name="gpsCoordinates">Coordinates</string>
+    <string name="submitReport">Submit Report</string>
+    <string name="viewReportDebug">View Report</string>
 </resources>
