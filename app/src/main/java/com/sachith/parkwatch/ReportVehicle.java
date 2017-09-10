@@ -38,6 +38,8 @@ public class ReportVehicle extends AppCompatActivity {
     Double latitude;
     private ImageView capturedImage;
 
+    DatabaseHelper myDb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,8 @@ public class ReportVehicle extends AppCompatActivity {
         Menu menu = bottomNavigationView.getMenu();
         MenuItem menuItem = menu.getItem(3);
         menuItem.setChecked(true);
+
+        myDb = new DatabaseHelper(this);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
