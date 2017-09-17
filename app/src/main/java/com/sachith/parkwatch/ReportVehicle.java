@@ -2,6 +2,7 @@ package com.sachith.parkwatch;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
@@ -12,6 +13,7 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -36,14 +38,14 @@ public class ReportVehicle extends AppCompatActivity {
     private LocationManager locationManager;
     private LocationListener locationListener;
 
-    private EditText registrationNumberEditText;
-    private EditText vehicleMakeEditText;
-    private EditText vehicleModelEditText;
-    private EditText vehicleColourEditText;
-    private EditText vehicleTypeEditText;
-    private Spinner carSpacesSpinner;
-    private Button addDataButton;
-    private Button viewDataButton;
+    EditText registrationNumberEditText;
+    EditText vehicleMakeEditText;
+    EditText vehicleModelEditText;
+    EditText vehicleColourEditText;
+    EditText vehicleTypeEditText;
+    Spinner carSpacesSpinner;
+    Button addDataButton;
+    Button viewDataButton;
 
     Double longitude;
     Double latitude;
@@ -62,6 +64,7 @@ public class ReportVehicle extends AppCompatActivity {
         vehicleModelEditText = (EditText) findViewById(R.id.vehicleModelEditText);
         vehicleColourEditText = (EditText) findViewById(R.id.vehicleColourEditText);
         vehicleTypeEditText = (EditText) findViewById(R.id.vehicleTypeEditText);
+
         carSpacesSpinner = (Spinner) findViewById(R.id.carSpacesSpinner);   //Use this later on
 
         addDataButton = (Button) findViewById(R.id.addDataButton);
@@ -75,6 +78,7 @@ public class ReportVehicle extends AppCompatActivity {
 
         configureButton();
         addDataFunction();
+        viewDataFunction();
 
 
         //Declaring the bottom navigation bar elements
@@ -204,12 +208,46 @@ public class ReportVehicle extends AppCompatActivity {
                         vehicleColourEditText.getText().toString(),
                         vehicleTypeEditText.getText().toString());
 
-                if(isInserted){
+                if(isInserted == true){
                     Toast.makeText(ReportVehicle.this, "Data Inserted", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(ReportVehicle.this, "Data Failed to Insert", Toast.LENGTH_LONG).show();
                 }
             }
         });
+    }
+
+    public void viewDataFunction(){
+        viewDataButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Cursor res = myDb.getAllData();
+                        if(res.getCount() == 0) {
+                            showMessageFunction("Error", "No data found");
+                            return;
+                        }
+                        StringBuffer buffer = new StringBuffer();
+                        while (res.moveToNext()) {
+                            buffer.append("ID :" + res.getString(0) + "\n");
+                            buffer.append("Registration :" + res.getString(1) + "\n");
+                            buffer.append("Make :" + res.getString(2) + "\n");
+                            buffer.append("Model :" + res.getString(3) + "\n");
+                            buffer.append("Colour :" + res.getString(4) + "\n");
+                            buffer.append("Type :" + res.getString(5) + "\n\n");
+                        }
+
+                        showMessageFunction("Data",buffer.toString());
+                    }
+                }
+        );
+    }
+
+    public void showMessageFunction(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 }
