@@ -1,18 +1,22 @@
 package com.sachith.parkwatch;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -29,10 +33,18 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class ReportVehicle extends AppCompatActivity {
 
     public static final int CAMERA_REQUEST = 10;
+    private static final int CAMERA_REQUEST_CODE = 1313;
+    private static final int REQUEST_CAMERA_PERMISSION = 6363;
+    private static final int REQUEST_WRITE_EXTERNAL_STORAGE_PERMISSION = 3939;
+
     private Button gpsPositionButton;
     private TextView gpsCoordinates;
     private LocationManager locationManager;
@@ -136,6 +148,10 @@ public class ReportVehicle extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     configureButton();
                 }
+            case CAMERA_REQUEST_CODE:
+                if(grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    invokeCamera();
+                }
         }
     }
 
@@ -181,9 +197,36 @@ public class ReportVehicle extends AppCompatActivity {
 
     //Creating the intent to take the user to the Camera Intent
     public void buttonTakePhotoClicked(View v){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if(checkSelfPermission(android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                //Calls the camera
+                invokeCamera();
+            } else {
+                String[] permissionRequested = {Manifest.permission.CAMERA};
+                requestPermissions(permissionRequested, CAMERA_REQUEST_CODE);
+            }
+        }
+    }
+
+
+
+    private void invokeCamera() {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        String pictureName = getPictureName();
+        File imageFile = new File(pictureDirectory, pictureName);
+        Uri photoURI = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".my.package.name.provider", imageFile);
+        cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,photoURI);
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
+
+    private String getPictureName() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
+        String timeStamp = sdf.format(new Date());
+        return "ParkWatchImage" + timeStamp + ".jpeg";
+    }
+
 
     //Capturing an image and showing a preview within the application
     @Override
@@ -192,8 +235,8 @@ public class ReportVehicle extends AppCompatActivity {
 
         if(resultCode == RESULT_OK){
             if(requestCode == CAMERA_REQUEST){
-                Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
-                capturedImage.setImageBitmap(cameraImage);
+//                Bitmap cameraImage = (Bitmap) data.getExtras().get("data");
+//                capturedImage.setImageBitmap(cameraImage);
             }
         }
     }
