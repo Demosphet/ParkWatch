@@ -155,6 +155,7 @@ public class ReportVehicle extends AppCompatActivity {
         }
     }
 
+    //Initialising the GPS button press
     private void configureButton() {
         gpsPositionButton.setOnClickListener(new View.OnClickListener() {
               @Override
@@ -209,7 +210,7 @@ public class ReportVehicle extends AppCompatActivity {
     }
 
 
-
+    //Invoke the Camera function
     private void invokeCamera() {
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
@@ -221,6 +222,7 @@ public class ReportVehicle extends AppCompatActivity {
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
+    //Picture name function
     private String getPictureName() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String timeStamp = sdf.format(new Date());
@@ -241,6 +243,7 @@ public class ReportVehicle extends AppCompatActivity {
         }
     }
 
+    //Add data to the database function
     public void addDataFunction(){
         addDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -249,7 +252,9 @@ public class ReportVehicle extends AppCompatActivity {
                         vehicleMakeEditText.getText().toString(),
                         vehicleModelEditText.getText().toString(),
                         vehicleColourEditText.getText().toString(),
-                        vehicleTypeEditText.getText().toString());
+                        vehicleTypeEditText.getText().toString(),
+                        longitude.toString(),
+                        latitude.toString());
 
                 if(isInserted == true){
                     Toast.makeText(ReportVehicle.this, "Data Inserted", Toast.LENGTH_LONG).show();
@@ -260,6 +265,7 @@ public class ReportVehicle extends AppCompatActivity {
         });
     }
 
+    //Show the content of the database function
     public void viewDataFunction(){
         viewDataButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -277,7 +283,10 @@ public class ReportVehicle extends AppCompatActivity {
                             buffer.append("Make :" + res.getString(2) + "\n");
                             buffer.append("Model :" + res.getString(3) + "\n");
                             buffer.append("Colour :" + res.getString(4) + "\n");
-                            buffer.append("Type :" + res.getString(5) + "\n\n");
+                            buffer.append("Type :" + res.getString(5) + "\n");
+                            buffer.append("Longitude :" + res.getString(6) + "\n");
+                            buffer.append("Latitude :" + res.getString(7) + "\n\n");
+
                         }
 
                         showMessageFunction("Data",buffer.toString());

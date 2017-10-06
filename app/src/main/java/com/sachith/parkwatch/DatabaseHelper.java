@@ -19,8 +19,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String COL_4 = "MODEL";
     public static final String COL_5 = "COLOUR";
     public static final String COL_6 = "TYPE";
-//    public static final String COL_7 = "CARSPACE";
-//    public static final String COL_8 = "IMAGELOCATION";
+    public static final String COL_7 = "LONGITUDE";
+    public static final String COL_8 = "LATITUDE";
+//    public static final String COL_8 = "CARSPACE";
+
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -28,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,REGISTRATION TEXT,MAKE TEXT,MODEL TEXT,COLOUR TEXT,TYPE TEXT)");
+        sqLiteDatabase.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,REGISTRATION TEXT,MAKE TEXT,MODEL TEXT,COLOUR TEXT,TYPE TEXT,LONGITUDE TEXT,LATITUDE TEXT)");
     }
 
     @Override
@@ -37,7 +39,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         onCreate(sqLiteDatabase);
     }
 
-    public boolean insertData(String registration, String make, String model, String colour, String type){
+    public boolean insertData(String registration, String make, String model, String colour, String type, String longitude, String latitude){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -46,8 +48,10 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         contentValues.put(COL_4, model);
         contentValues.put(COL_5, colour);
         contentValues.put(COL_6, type);
-//        contentValues.put(COL_7, carspaces);
-//        contentValues.put(COL_8, imagelocation);
+        contentValues.put(COL_7, longitude);
+        contentValues.put(COL_8, latitude);
+//        contentValues.put(COL_9, carspaces);
+
 
         long result = sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
 
