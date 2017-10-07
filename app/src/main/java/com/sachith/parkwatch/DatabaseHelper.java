@@ -14,22 +14,22 @@ import android.util.Log;
 public class DatabaseHelper extends SQLiteOpenHelper{
     private String query;
     public static final String DATABASE_NAME = "parkwatch.db";
-    public static final String TABLE_NAME_1 = "vehicle";
-    public static final String COL_1_1 = "ID";
-    public static final String COL_1_2 = "REGISTRATION";
-    public static final String COL_1_3 = "MAKE";
-    public static final String COL_1_4 = "MODEL";
-    public static final String COL_1_5 = "COLOUR";
-    public static final String COL_1_6 = "TYPE";
-    public static final String COL_1_7 = "LONGITUDE";
-    public static final String COL_1_8 = "LATITUDE";
-    public static final String COL_1_9 = "CARSPACE";
+    public static final String TABLE_VEHICLE = "vehicle";
+    public static final String COL_VEHICLE_ID = "id";
+    public static final String COL_VEHICLE_REGISTRATION = "registration";
+    public static final String COL_VEHICLE_MAKE = "make";
+    public static final String COL_VEHICLE_MODEL = "model";
+    public static final String COL_VEHICLE_COLOUR = "colour";
+    public static final String COL_VEHICLE_TYPE = "type";
+    public static final String COL_VEHICLE_LONGITUDE = "longitude";
+    public static final String COL_VEHICLE_LATITUDE = "latitude";
+    public static final String COL_VEHICLE_CARSPACE_ID = "carspace_id";
 
-    public static final String TABLE_NAME_2 = "spaces";
-    public static final String COL_2_1 = "ID";
-    public static final String COL_2_2 = "CARSPACE";
-    public static final String COL_2_3 = "NOOFCARS";
-    public static final String COL_2_4 = "IMAGEURL";
+    public static final String TABLE_SPACES = "spaces";
+    public static final String COL_SPACES_ID = "ID";
+    public static final String COL_SPACES_CARSPACES_ID = "carspace_id";
+    public static final String COL_SPACES_NOOFCARS = "noofcars";
+    public static final String COL_SPACES_IMAGEURL = "imageurl";
 
 
     public DatabaseHelper(Context context) {
@@ -40,25 +40,26 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Create VEHICLES table
         Log.d("db-debug","In onCreate");
-        sqLiteDatabase.execSQL("create table " + TABLE_NAME_1 +
-                " (" + COL_1_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                COL_1_2 + " TEXT," +
-                COL_1_3 + " TEXT," +
-                COL_1_4 + " TEXT," +
-                COL_1_5 + " TEXT," +
-                COL_1_6 + " TEXT," +
-                COL_1_7 + " TEXT," +
-                COL_1_8 + " TEXT," +
-                COL_1_9 + " TEXT)");
+        sqLiteDatabase.execSQL("create table " + TABLE_VEHICLE +
+                " (" + COL_VEHICLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COL_VEHICLE_REGISTRATION + " TEXT," +
+                COL_VEHICLE_MAKE + " TEXT," +
+                COL_VEHICLE_MODEL + " TEXT," +
+                COL_VEHICLE_COLOUR + " TEXT," +
+                COL_VEHICLE_TYPE + " TEXT," +
+                COL_VEHICLE_LONGITUDE + " TEXT," +
+                COL_VEHICLE_LATITUDE + " TEXT," +
+                COL_VEHICLE_CARSPACE_ID + " TEXT)");
         Log.d("db-debug","Created Table 1");
         //Create CARSPACES table
 
 
-        query = "create table " + TABLE_NAME_2 +
-                " (" + COL_2_1 + " INTEGER PRIMARY KEY AUTOINCREMENT," +
-                COL_2_2 + " TEXT," +
-                COL_2_3 + " INTEGER," +
-                COL_2_4 + " TEXT)";
+        query = "create table " + TABLE_SPACES +
+                " (" + COL_SPACES_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COL_SPACES_CARSPACES_ID + " TEXT," +
+                COL_SPACES_NOOFCARS + " INTEGER," +
+                COL_SPACES_IMAGEURL + " TEXT," +
+                " FOREIGN KEY (" + COL_SPACES_CARSPACES_ID + ") REFERENCES " + TABLE_VEHICLE + "(" + COL_VEHICLE_CARSPACE_ID + ")" + ")";
 
         Log.d("db-debug",query);
 
@@ -66,7 +67,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
         Log.d("db-debug","Created Table 2");
 
-        query = "INSERT INTO " + TABLE_NAME_2 + " (" + COL_2_2 + ", " + COL_2_3 + ", " + COL_2_4 + ") VALUES (\"A\",5,\"here\");";
+        query = "INSERT INTO " + TABLE_SPACES + " (" + COL_SPACES_CARSPACES_ID + ", " + COL_SPACES_NOOFCARS + ", " + COL_SPACES_IMAGEURL + ") VALUES (\"A\",5,\"here\");";
+        sqLiteDatabase.execSQL(query);
+        query = "INSERT INTO " + TABLE_SPACES + " (" + COL_SPACES_CARSPACES_ID + ", " + COL_SPACES_NOOFCARS + ", " + COL_SPACES_IMAGEURL + ") VALUES (\"B\",2,\"there\");";
+        sqLiteDatabase.execSQL(query);
+        query = "INSERT INTO " + TABLE_SPACES + " (" + COL_SPACES_CARSPACES_ID + ", " + COL_SPACES_NOOFCARS + ", " + COL_SPACES_IMAGEURL + ") VALUES (\"C\",7,\"where\");";
         sqLiteDatabase.execSQL(query);
 
         Log.d("db-debug","Inserted Data");
@@ -74,8 +79,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_1);
-//        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME_2);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_VEHICLE);
+//        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_SPACES);
         onCreate(sqLiteDatabase);
     }
 
@@ -83,17 +88,17 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(COL_1_2, registration);
-        contentValues.put(COL_1_3, make);
-        contentValues.put(COL_1_4, model);
-        contentValues.put(COL_1_5, colour);
-        contentValues.put(COL_1_6, type);
-        contentValues.put(COL_1_7, longitude);
-        contentValues.put(COL_1_8, latitude);
-        contentValues.put(COL_1_9, carSpaces);
+        contentValues.put(COL_VEHICLE_REGISTRATION, registration);
+        contentValues.put(COL_VEHICLE_MAKE, make);
+        contentValues.put(COL_VEHICLE_MODEL, model);
+        contentValues.put(COL_VEHICLE_COLOUR, colour);
+        contentValues.put(COL_VEHICLE_TYPE, type);
+        contentValues.put(COL_VEHICLE_LONGITUDE, longitude);
+        contentValues.put(COL_VEHICLE_LATITUDE, latitude);
+        contentValues.put(COL_VEHICLE_CARSPACE_ID, carSpaces);
 
 
-        long result = sqLiteDatabase.insert(TABLE_NAME_1,null,contentValues);
+        long result = sqLiteDatabase.insert(TABLE_VEHICLE,null,contentValues);
 
         if(result == -1){
             return false;
@@ -106,11 +111,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(COL_2_2, carspace);
-        contentValues.put(COL_2_2, noofcars);
-        contentValues.put(COL_2_3, imageurl);
+        contentValues.put(COL_SPACES_CARSPACES_ID, carspace);
+        contentValues.put(COL_SPACES_NOOFCARS, noofcars);
+        contentValues.put(COL_SPACES_IMAGEURL, imageurl);
 
-        long result = sqLiteDatabase.insert(TABLE_NAME_2,null,contentValues);
+        long result = sqLiteDatabase.insert(TABLE_SPACES,null,contentValues);
 
         if(result == -1){
             return false;
@@ -121,13 +126,13 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public Cursor getAllData(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor res = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME_1,null);
+        Cursor res = sqLiteDatabase.rawQuery("select * from " + TABLE_VEHICLE,null);
         return res;
     }
 
     public Cursor getAllData_carSpace(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor res = sqLiteDatabase.rawQuery("select * from " + TABLE_NAME_2,null);
+        Cursor res = sqLiteDatabase.rawQuery("select * from " + TABLE_SPACES,null);
         return res;
     }
 }

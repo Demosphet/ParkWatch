@@ -52,10 +52,8 @@ public class ReportVehicle extends AppCompatActivity {
     private LocationListener locationListener;
 
     EditText registrationNumberEditText;
-//    EditText vehicleMakeEditText;
     EditText vehicleModelEditText;
     EditText vehicleColourEditText;
-//    EditText vehicleTypeEditText;
     Spinner carSpacesSpinner;
     Spinner carMakeSpinner;
     Spinner carTypeSpinner;
@@ -75,10 +73,8 @@ public class ReportVehicle extends AppCompatActivity {
         setContentView(R.layout.activity_report_vehicle);
 
         registrationNumberEditText = (EditText) findViewById(R.id.registrationNumberEditText);
-//        vehicleMakeEditText = (EditText) findViewById(R.id.vehicleMakeEditText);
         vehicleModelEditText = (EditText) findViewById(R.id.vehicleModelEditText);
         vehicleColourEditText = (EditText) findViewById(R.id.vehicleColourEditText);
-//        vehicleTypeEditText = (EditText) findViewById(R.id.vehicleTypeEditText);
 
         carSpacesSpinner = (Spinner) findViewById(R.id.carSpacesSpinner);
         carMakeSpinner = (Spinner) findViewById(R.id.carMakeSpinner);
