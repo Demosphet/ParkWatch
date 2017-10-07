@@ -10,10 +10,10 @@
     <string name="mapHeadingText">Map View of the Park</string>
     <string name="mapHeading">Map View of the Park</string>
     <string name="logInButton">Log In</string>
-    <string name="CarSpaceSelectionText">Car Spaces</string>
+    <string name="CarSpaceSelectionText">Car Parks</string>
     <string name="parkedVehicles">Parked Vehicles:</string>
     <string name="reportVehicle">Report Vehicle</string>
-    <string name="carSpaceHeading">Car Spaces</string>
+    <string name="carSpaceHeading">Car Parks</string>
     <string name="reportHistoryHeading">Report History</string>
     <string name="reportVehicleHeading">Report Vehicle</string>
     <string name="registrationNumber">Registration\nNumber:</string>
@@ -35,4 +35,54 @@
     <string name="gpsCoordinates">Coordinates</string>
     <string name="submitReport">Submit Report</string>
     <string name="viewReportDebug">View Report</string>
+    
+    <string-array name="carSpacesList">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+    </string-array>
+
+    <string-array name="carMake">
+        <item>Acura</item>
+        <item>Audi</item>
+        <item>Aston Martin</item>
+        <item>Bentley</item>
+        <item>BMW</item>
+        <item>Bugatti</item>
+        <item>Citroen</item>
+        <item>Dodge</item>
+        <item>Ferrari</item>
+        <item>Fiat</item>
+        <item>Ford</item>
+        <item>Holden</item>
+        <item>Honda</item>
+        <item>Hyundai</item>
+        <item>Jeep</item>
+        <item>Lexus</item>
+        <item>Mercedes Benz</item>
+        <item>Metal Gear</item>
+        <item>Mini</item>
+        <item>Mitsubishi</item>
+        <item>Nissan</item>
+        <item>Peugeot</item>
+        <item>Renault</item>
+        <item>Porsche</item>
+        <item>Soviet Nuclear Submarine</item>
+        <item>Subaru</item>
+        <item>Suzuki</item>
+        <item>Tesla</item>
+        <item>Toyota</item>
+        <item>Volkswagen</item>
+        <item>Volvo</item>
+    </string-array>
+
+    <string-array name="carType">
+        <item>Hatchback</item>
+        <item>Sedan</item>
+        <item>MPV</item>
+        <item>SUV</item>
+        <item>Crossover</item>
+        <item>Coupe</item>
+        <item>Convertible</item>
+    </string-array>
 </resources>

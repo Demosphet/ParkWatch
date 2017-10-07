@@ -73,12 +73,10 @@
                 android:paddingTop="10dp"
                 android:text="@string/vehicleMake" />
 
-            <EditText
-                android:id="@+id/vehicleMakeEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+            <Spinner
+                android:id="@+id/carMakeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </TableRow>
 
@@ -144,12 +142,10 @@
                 android:paddingTop="10dp"
                 android:text="@string/vehicleType" />
 
-            <EditText
-                android:id="@+id/vehicleTypeEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+            <Spinner
+                android:id="@+id/carTypeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </TableRow>
 

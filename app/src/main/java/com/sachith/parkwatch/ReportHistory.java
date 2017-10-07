@@ -78,7 +78,8 @@ public class ReportHistory extends AppCompatActivity {
             buffer.append("Colour :         " + res.getString(4) + "\n");
             buffer.append("Type :           " + res.getString(5) + "\n");
             buffer.append("Longitude :      " + res.getString(6) + "\n");
-            buffer.append("Latitude :       " + res.getString(7) + "\n\n");
+            buffer.append("Latitude :       " + res.getString(7) + "\n");
+            buffer.append("Car Space :      " + res.getString(8) + "\n\n");
 
         }
         tableEntries.setText(buffer);

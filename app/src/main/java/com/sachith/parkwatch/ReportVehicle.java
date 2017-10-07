@@ -22,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -51,11 +52,13 @@ public class ReportVehicle extends AppCompatActivity {
     private LocationListener locationListener;
 
     EditText registrationNumberEditText;
-    EditText vehicleMakeEditText;
+//    EditText vehicleMakeEditText;
     EditText vehicleModelEditText;
     EditText vehicleColourEditText;
-    EditText vehicleTypeEditText;
+//    EditText vehicleTypeEditText;
     Spinner carSpacesSpinner;
+    Spinner carMakeSpinner;
+    Spinner carTypeSpinner;
     Button addDataButton;
     Button viewDataButton;
 
@@ -72,12 +75,14 @@ public class ReportVehicle extends AppCompatActivity {
         setContentView(R.layout.activity_report_vehicle);
 
         registrationNumberEditText = (EditText) findViewById(R.id.registrationNumberEditText);
-        vehicleMakeEditText = (EditText) findViewById(R.id.vehicleMakeEditText);
+//        vehicleMakeEditText = (EditText) findViewById(R.id.vehicleMakeEditText);
         vehicleModelEditText = (EditText) findViewById(R.id.vehicleModelEditText);
         vehicleColourEditText = (EditText) findViewById(R.id.vehicleColourEditText);
-        vehicleTypeEditText = (EditText) findViewById(R.id.vehicleTypeEditText);
+//        vehicleTypeEditText = (EditText) findViewById(R.id.vehicleTypeEditText);
 
-        carSpacesSpinner = (Spinner) findViewById(R.id.carSpacesSpinner);   //Use this later on
+        carSpacesSpinner = (Spinner) findViewById(R.id.carSpacesSpinner);
+        carMakeSpinner = (Spinner) findViewById(R.id.carMakeSpinner);
+        carTypeSpinner = (Spinner) findViewById(R.id.carTypeSpinner);
 
         addDataButton = (Button) findViewById(R.id.addDataButton);
         viewDataButton = (Button) findViewById(R.id.viewDataButton);
@@ -88,9 +93,34 @@ public class ReportVehicle extends AppCompatActivity {
 
         capturedImage = (ImageView) findViewById(R.id.capturedImage);
 
+
+
+        //Initialising the Spinner for Car Spaces
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(ReportVehicle.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.carSpacesList));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carSpacesSpinner.setAdapter(myAdapter);
+
+        //Initialising the Spinner for Car Makes
+        ArrayAdapter<String> myAdapterMake = new ArrayAdapter<String>(ReportVehicle.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.carMake));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carMakeSpinner.setAdapter(myAdapterMake);
+
+        //Initialising the Spinner for Car Makes
+        ArrayAdapter<String> myAdapterType = new ArrayAdapter<String>(ReportVehicle.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.carType));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carTypeSpinner.setAdapter(myAdapterType);
+
+
+
+
         configureButton();
         addDataFunction();
         viewDataFunction();
+
+
 
 
         //Declaring the bottom navigation bar elements
@@ -249,12 +279,13 @@ public class ReportVehicle extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 boolean isInserted = myDb.insertData(registrationNumberEditText.getText().toString(),
-                        vehicleMakeEditText.getText().toString(),
+                        carMakeSpinner.getSelectedItem().toString(),
                         vehicleModelEditText.getText().toString(),
                         vehicleColourEditText.getText().toString(),
-                        vehicleTypeEditText.getText().toString(),
+                        carTypeSpinner.getSelectedItem().toString(),
                         longitude.toString(),
-                        latitude.toString());
+                        latitude.toString(),
+                        carSpacesSpinner.getSelectedItem().toString());
 
                 if(isInserted == true){
                     Toast.makeText(ReportVehicle.this, "Data Inserted", Toast.LENGTH_LONG).show();
@@ -285,7 +316,8 @@ public class ReportVehicle extends AppCompatActivity {
                             buffer.append("Colour :         " + res.getString(4) + "\n");
                             buffer.append("Type :           " + res.getString(5) + "\n");
                             buffer.append("Longitude :      " + res.getString(6) + "\n");
-                            buffer.append("Latitude :       " + res.getString(7) + "\n\n");
+                            buffer.append("Latitude :       " + res.getString(7) + "\n");
+                            buffer.append("Car Space :      " + res.getString(8) + "\n\n");
 
                         }
 

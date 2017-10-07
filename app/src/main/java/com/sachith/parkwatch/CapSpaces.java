@@ -10,13 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class CapSpaces extends AppCompatActivity {
 
     private Button reportVehicleButton;
     Button viewDatabaseButton;
+    Spinner carSpaceSpinner;
 
     DatabaseHelper myDb;
 
@@ -24,6 +27,8 @@ public class CapSpaces extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cap_spaces);
+
+        carSpaceSpinner = (Spinner) findViewById(R.id.carSpaceSpinner);
 
         //Declaring the "Report Vehicle" button
         reportVehicleButton = (Button) findViewById(R.id.reportVehicleButton);
@@ -40,6 +45,12 @@ public class CapSpaces extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+
+        //Initialising the Spinner for Car Spaces
+        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(CapSpaces.this,
+                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.carSpacesList));
+        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        carSpaceSpinner.setAdapter(myAdapter);
 
         viewDataTable2();
 

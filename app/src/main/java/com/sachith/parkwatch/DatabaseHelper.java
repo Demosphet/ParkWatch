@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String COL_1_6 = "TYPE";
     public static final String COL_1_7 = "LONGITUDE";
     public static final String COL_1_8 = "LATITUDE";
-//    public static final String COL_8 = "CARSPACE";
+    public static final String COL_1_9 = "CARSPACE";
 
     public static final String TABLE_NAME_2 = "spaces";
     public static final String COL_2_1 = "ID";
@@ -48,7 +48,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 COL_1_5 + " TEXT," +
                 COL_1_6 + " TEXT," +
                 COL_1_7 + " TEXT," +
-                COL_1_8 + " TEXT)");
+                COL_1_8 + " TEXT," +
+                COL_1_9 + " TEXT)");
         Log.d("db-debug","Created Table 1");
         //Create CARSPACES table
 
@@ -78,7 +79,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         onCreate(sqLiteDatabase);
     }
 
-    public boolean insertData(String registration, String make, String model, String colour, String type, String longitude, String latitude){
+    public boolean insertData(String registration, String make, String model, String colour, String type, String longitude, String latitude, String carSpaces){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -89,7 +90,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         contentValues.put(COL_1_6, type);
         contentValues.put(COL_1_7, longitude);
         contentValues.put(COL_1_8, latitude);
-//        contentValues.put(COL_9, carspaces);
+        contentValues.put(COL_1_9, carSpaces);
 
 
         long result = sqLiteDatabase.insert(TABLE_NAME_1,null,contentValues);
