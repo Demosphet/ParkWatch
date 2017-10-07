@@ -1,9 +1,11 @@
 package com.sachith.parkwatch;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +16,9 @@ import android.widget.Toast;
 public class CapSpaces extends AppCompatActivity {
 
     private Button reportVehicleButton;
+    Button viewDatabaseButton;
+
+    DatabaseHelper myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +27,10 @@ public class CapSpaces extends AppCompatActivity {
 
         //Declaring the "Report Vehicle" button
         reportVehicleButton = (Button) findViewById(R.id.reportVehicleButton);
+        viewDatabaseButton = (Button) findViewById(R.id.viewDatabaseButton);
+
+        //Created an instance of a database
+        myDb = new DatabaseHelper(this);
 
         //Listening to when the "Report Vehicle" button is pressed
         reportVehicleButton.setOnClickListener(new View.OnClickListener() {
@@ -31,6 +40,8 @@ public class CapSpaces extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+
+        viewDataTable2();
 
         //Declaring the bottom navigation bar elements
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -73,5 +84,37 @@ public class CapSpaces extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    public void viewDataTable2() {
+        viewDatabaseButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Cursor res = myDb.getAllData_carSpace();
+                        if(res.getCount() == 0) {
+                            showMessageFunction("Error", "No data found");
+                            return;
+                        }
+                        StringBuffer buffer = new StringBuffer();
+                        while (res.moveToNext()) {
+                            buffer.append("ID :             " + res.getString(0) + "\n");
+                            buffer.append("Car Space :      " + res.getString(1) + "\n");
+                            buffer.append("Number of Cars : " + res.getString(2) + "\n");
+                            buffer.append("Image URL :      " + res.getString(3) + "\n\n");
+                        }
+
+                        showMessageFunction("Data",buffer.toString());
+                    }
+                }
+        );
+    }
+
+    public void showMessageFunction(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
     }
 }

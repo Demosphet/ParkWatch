@@ -71,14 +71,14 @@ public class ReportHistory extends AppCompatActivity {
         Cursor res = myDb.getAllData();
         StringBuffer buffer = new StringBuffer();
         while (res.moveToNext()) {
-            buffer.append("ID :" + res.getString(0) + "\n");
-            buffer.append("Registration :" + res.getString(1) + "\n");
-            buffer.append("Make :" + res.getString(2) + "\n");
-            buffer.append("Model :" + res.getString(3) + "\n");
-            buffer.append("Colour :" + res.getString(4) + "\n");
-            buffer.append("Type :" + res.getString(5) + "\n");
-            buffer.append("Longitude :" + res.getString(6) + "\n");
-            buffer.append("Latitude :" + res.getString(7) + "\n\n");
+            buffer.append("ID :             " + res.getString(0) + "\n");
+            buffer.append("Registration :   " + res.getString(1) + "\n");
+            buffer.append("Make :           " + res.getString(2) + "\n");
+            buffer.append("Model :          " + res.getString(3) + "\n");
+            buffer.append("Colour :         " + res.getString(4) + "\n");
+            buffer.append("Type :           " + res.getString(5) + "\n");
+            buffer.append("Longitude :      " + res.getString(6) + "\n");
+            buffer.append("Latitude :       " + res.getString(7) + "\n\n");
 
         }
         tableEntries.setText(buffer);

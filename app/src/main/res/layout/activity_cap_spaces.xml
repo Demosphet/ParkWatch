@@ -6,6 +6,22 @@
     android:layout_height="match_parent"
     tools:context="com.sachith.parkwatch.CapSpaces">
 
+    <Button
+        android:id="@+id/viewDatabaseButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/viewReportDebug"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parkedVehiclesNumberTextView"
+        app:layout_constraintVertical_bias="0.207" />
+
     <TextView
         android:id="@+id/carSpaceHeadingTextView"
         android:layout_width="wrap_content"
