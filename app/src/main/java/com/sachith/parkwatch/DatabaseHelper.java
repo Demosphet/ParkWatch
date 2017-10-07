@@ -30,7 +30,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT,REGISTRATION TEXT,MAKE TEXT,MODEL TEXT,COLOUR TEXT,TYPE TEXT,LONGITUDE TEXT,LATITUDE TEXT)");
+        sqLiteDatabase.execSQL("create table " + TABLE_NAME +
+                " (" + COL_1 + "INTEGER PRIMARY KEY AUTOINCREMENT," +
+                COL_2 + "TEXT," +
+                COL_3 + "TEXT," +
+                COL_4 + "TEXT," +
+                COL_5 + "TEXT," +
+                COL_6 + "TEXT," +
+                COL_7 + "TEXT," +
+                COL_8 + "TEXT)");
     }
 
     @Override

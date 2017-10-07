@@ -1,20 +1,30 @@
 package com.sachith.parkwatch;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ReportHistory extends AppCompatActivity {
+
+    private TextView tableEntries;
+    DatabaseHelper myDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_history);
+
+        tableEntries = (TextView) findViewById(R.id.textView24);
+
+        //Created an instance of a database
+        myDb = new DatabaseHelper(this);
 
         //Declaring the bottom navigation bar elements
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -57,5 +67,20 @@ public class ReportHistory extends AppCompatActivity {
                 return true;
             }
         });
+
+        Cursor res = myDb.getAllData();
+        StringBuffer buffer = new StringBuffer();
+        while (res.moveToNext()) {
+            buffer.append("ID :" + res.getString(0) + "\n");
+            buffer.append("Registration :" + res.getString(1) + "\n");
+            buffer.append("Make :" + res.getString(2) + "\n");
+            buffer.append("Model :" + res.getString(3) + "\n");
+            buffer.append("Colour :" + res.getString(4) + "\n");
+            buffer.append("Type :" + res.getString(5) + "\n");
+            buffer.append("Longitude :" + res.getString(6) + "\n");
+            buffer.append("Latitude :" + res.getString(7) + "\n\n");
+
+        }
+        tableEntries.setText(buffer);
     }
 }
