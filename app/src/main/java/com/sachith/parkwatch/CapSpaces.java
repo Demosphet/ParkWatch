@@ -17,12 +17,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class CapSpaces extends AppCompatActivity {
+public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Button reportVehicleButton;
     Button viewDatabaseButton;
     Spinner carSpaceSpinner;
     TextView parkedVehiclesNumberTextView;
+    TextView placeHolderTextView;
 
     DatabaseHelper myDb;
 
@@ -33,6 +34,7 @@ public class CapSpaces extends AppCompatActivity {
 
         carSpaceSpinner = (Spinner) findViewById(R.id.carSpaceSpinner);
         parkedVehiclesNumberTextView = (TextView) findViewById(R.id.parkedVehiclesNumberTextView);
+        placeHolderTextView = (TextView) findViewById(R.id.placeHolderTextView);
 
         //Declaring the "Report Vehicle" button
         reportVehicleButton = (Button) findViewById(R.id.reportVehicleButton);
@@ -49,6 +51,9 @@ public class CapSpaces extends AppCompatActivity {
                 startActivity(startIntent);
             }
         });
+
+        //Initialising Spinner
+        carSpaceSpinner.setOnItemSelectedListener(this);
 
         //Initialising the Spinner for Car Spaces
         ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(CapSpaces.this,
@@ -134,20 +139,6 @@ public class CapSpaces extends AppCompatActivity {
         builder.show();
     }
 
-    public void carSpaceSpinnerFunction() {
-        //Initialising the Spinner for Car Spaces
-        ArrayAdapter<String> myAdapter = new ArrayAdapter<String>(CapSpaces.this,
-                android.R.layout.simple_list_item_1, getResources().getStringArray(R.array.carSpacesList));
-        myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        carSpaceSpinner.setAdapter(myAdapter);
-
-        carSpaceSpinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                carSpacesCheck();
-            }
-        });
-    }
 
     public void carSpacesCheck(){
         Cursor res = myDb.getAllData_carSpace();
@@ -188,5 +179,17 @@ public class CapSpaces extends AppCompatActivity {
             ID++;
         }
 //        parkedVehiclesNumberTextView.setText(bufferIntNoOfCarsA);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String item = adapterView.getItemAtPosition(i).toString();
+        parkedVehiclesNumberTextView.setText(item);
+        placeHolderTextView.setText(item);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
