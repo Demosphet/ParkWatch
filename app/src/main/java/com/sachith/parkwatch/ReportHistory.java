@@ -80,7 +80,8 @@ public class ReportHistory extends AppCompatActivity {
             buffer.append("Longitude :      " + res.getString(6) + "\n");
             buffer.append("Latitude :       " + res.getString(7) + "\n");
             buffer.append("Car Space :      " + res.getString(8) + "\n");
-            buffer.append("Time Stamp :     " + res.getString(9) + "\n\n");
+            buffer.append("Time Stamp :     " + res.getString(9) + "\n");
+            buffer.append("Image URI :      " + res.getString(10) + "\n\n");
 
         }
         tableEntries.setText(buffer);

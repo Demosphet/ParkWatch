@@ -25,6 +25,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String COL_VEHICLE_LATITUDE = "latitude";
     public static final String COL_VEHICLE_CARSPACE_ID = "carspace_id";
     public static final String COL_VEHICLE_TIMESTAMP = "timestamp";
+    public static final String COL_VEHICLE_URL = "imageURL";
 
     public static final String TABLE_SPACES = "spaces";
     public static final String COL_SPACES_ID = "ID";
@@ -51,7 +52,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 COL_VEHICLE_LONGITUDE + " TEXT," +
                 COL_VEHICLE_LATITUDE + " TEXT," +
                 COL_VEHICLE_CARSPACE_ID + " TEXT," +
-                COL_VEHICLE_TIMESTAMP + " DATETIME DEFAULT (DATETIME(CURRENT_TIMESTAMP,'LOCALTIME')))";
+                COL_VEHICLE_TIMESTAMP + " DATETIME DEFAULT (DATETIME(CURRENT_TIMESTAMP,'LOCALTIME'))," +
+                COL_VEHICLE_URL + " TEXT)";
         sqLiteDatabase.execSQL(query);
 
         Log.d("db-debug","Created Table 1");
@@ -93,7 +95,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         onCreate(sqLiteDatabase);
     }
 
-    public boolean insertData(String registration, String make, String model, String colour, String type, String longitude, String latitude, String carSpaces){
+    public boolean insertData(String registration, String make, String model, String colour, String type, String longitude, String latitude, String carSpaces, String url){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
@@ -105,6 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         contentValues.put(COL_VEHICLE_LONGITUDE, longitude);
         contentValues.put(COL_VEHICLE_LATITUDE, latitude);
         contentValues.put(COL_VEHICLE_CARSPACE_ID, carSpaces);
+        contentValues.put(COL_VEHICLE_URL, url);
 
 
         long result = sqLiteDatabase.insert(TABLE_VEHICLE,null,contentValues);

@@ -64,6 +64,7 @@ public class ReportVehicle extends AppCompatActivity {
     Double longitude;
     Double latitude;
     private ImageView capturedImage;
+    public Uri photoURI;
 
     DatabaseHelper myDb;
 
@@ -243,7 +244,7 @@ public class ReportVehicle extends AppCompatActivity {
         File pictureDirectory = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         String pictureName = getPictureName();
         File imageFile = new File(pictureDirectory, pictureName);
-        Uri photoURI = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".my.package.name.provider", imageFile);
+        photoURI = FileProvider.getUriForFile(this, this.getApplicationContext().getPackageName() + ".my.package.name.provider", imageFile);
         cameraIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,photoURI);
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
@@ -283,7 +284,8 @@ public class ReportVehicle extends AppCompatActivity {
                         carTypeSpinner.getSelectedItem().toString(),
                         longitude.toString(),
                         latitude.toString(),
-                        carSpacesSpinner.getSelectedItem().toString());
+                        carSpacesSpinner.getSelectedItem().toString(),
+                        photoURI.toString());
 
                 item = carSpacesSpinner.getSelectedItem().toString();
 
@@ -335,7 +337,8 @@ public class ReportVehicle extends AppCompatActivity {
                             buffer.append("Longitude :      " + res.getString(6) + "\n");
                             buffer.append("Latitude :       " + res.getString(7) + "\n");
                             buffer.append("Car Space :      " + res.getString(8) + "\n");
-                            buffer.append("Time Stamp :     " + res.getString(9) + "\n\n");
+                            buffer.append("Time Stamp :     " + res.getString(9) + "\n");
+                            buffer.append("Image URI :      " + res.getString(10) + "\n\n");
 
                         }
 
