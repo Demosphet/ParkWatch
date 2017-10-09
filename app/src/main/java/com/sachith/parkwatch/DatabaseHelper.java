@@ -41,7 +41,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Create VEHICLES table
         Log.d("db-debug","In onCreate");
-        sqLiteDatabase.execSQL("create table " + TABLE_VEHICLE +
+        query = "create table " + TABLE_VEHICLE +
                 " (" + COL_VEHICLE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 COL_VEHICLE_REGISTRATION + " TEXT," +
                 COL_VEHICLE_MAKE + " TEXT," +
@@ -51,8 +51,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 COL_VEHICLE_LONGITUDE + " TEXT," +
                 COL_VEHICLE_LATITUDE + " TEXT," +
                 COL_VEHICLE_CARSPACE_ID + " TEXT," +
-                COL_VEHICLE_TIMESTAMP + " DATETIME DEFAULT (DATETIME(CURRENT_TIMESTAMP,'LOCALTIME')))");
+                COL_VEHICLE_TIMESTAMP + " DATETIME DEFAULT (DATETIME(CURRENT_TIMESTAMP,'LOCALTIME')))";
+        sqLiteDatabase.execSQL(query);
+
         Log.d("db-debug","Created Table 1");
+        Log.d("db-debug",query);
         //Create CARSPACES table
 
 
@@ -63,18 +66,22 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 COL_SPACES_IMAGEURL + " TEXT," +
                 " FOREIGN KEY (" + COL_SPACES_CARSPACES_ID + ") REFERENCES " + TABLE_VEHICLE + "(" + COL_VEHICLE_CARSPACE_ID + ")" + ")";
 
+        sqLiteDatabase.execSQL(query);
+        Log.d("db-debug","Created Table 2");
         Log.d("db-debug",query);
 
-        sqLiteDatabase.execSQL(query);
-
-        Log.d("db-debug","Created Table 2");
-
         query = "INSERT INTO " + TABLE_SPACES + " (" + COL_SPACES_CARSPACES_ID + ", " + COL_SPACES_NOOFCARS + ", " + COL_SPACES_IMAGEURL + ") VALUES (\"A\",5,\"here\");";
+        Log.d("db-debug","Entry 1");
         sqLiteDatabase.execSQL(query);
+        Log.d("db-debug",query);
         query = "INSERT INTO " + TABLE_SPACES + " (" + COL_SPACES_CARSPACES_ID + ", " + COL_SPACES_NOOFCARS + ", " + COL_SPACES_IMAGEURL + ") VALUES (\"B\",2,\"there\");";
+        Log.d("db-debug","Entry 2");
         sqLiteDatabase.execSQL(query);
+        Log.d("db-debug",query);
         query = "INSERT INTO " + TABLE_SPACES + " (" + COL_SPACES_CARSPACES_ID + ", " + COL_SPACES_NOOFCARS + ", " + COL_SPACES_IMAGEURL + ") VALUES (\"C\",7,\"where\");";
+        Log.d("db-debug","Entry 3");
         sqLiteDatabase.execSQL(query);
+        Log.d("db-debug",query);
 
         Log.d("db-debug","Inserted Data");
     }
@@ -128,13 +135,53 @@ public class DatabaseHelper extends SQLiteOpenHelper{
 
     public Cursor getAllData(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor res = sqLiteDatabase.rawQuery("select * from " + TABLE_VEHICLE,null);
+        Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_VEHICLE,null);
         return res;
     }
 
     public Cursor getAllData_carSpace(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        Cursor res = sqLiteDatabase.rawQuery("select * from " + TABLE_SPACES,null);
+        Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_SPACES,null);
         return res;
+    }
+
+    public int getAllData_carSpaceA(){
+        int NoOfCars = -1;
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor res = sqLiteDatabase.rawQuery("SELECT " + COL_SPACES_NOOFCARS + " FROM " + TABLE_SPACES + " WHERE " + COL_SPACES_CARSPACES_ID + " = " + "\"A\";" ,null);
+
+        if (res.moveToFirst()) {
+            do {
+                NoOfCars = res.getInt(res.getColumnIndex(COL_SPACES_NOOFCARS));
+            }
+            while (res.moveToNext());
+        }
+        return NoOfCars;
+    }
+
+    public int getAllData_carSpaceB(){
+        int NoOfCars = -1;
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor res = sqLiteDatabase.rawQuery("SELECT " + COL_SPACES_NOOFCARS + " FROM " + TABLE_SPACES + " WHERE " + COL_SPACES_CARSPACES_ID + " = " + "\"B\";" ,null);
+        if (res.moveToFirst()) {
+            do {
+                NoOfCars = res.getInt(res.getColumnIndex(COL_SPACES_NOOFCARS));
+            }
+            while (res.moveToNext());
+        }
+        return NoOfCars;
+    }
+
+    public int getAllData_carSpaceC(){
+        int NoOfCars = -1;
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor res = sqLiteDatabase.rawQuery("SELECT " + COL_SPACES_NOOFCARS + " FROM " + TABLE_SPACES + " WHERE " + COL_SPACES_CARSPACES_ID + " = " + "\"C\";" ,null);
+        if (res.moveToFirst()) {
+            do {
+                NoOfCars = res.getInt(res.getColumnIndex(COL_SPACES_NOOFCARS));
+            }
+            while (res.moveToNext());
+        }
+        return NoOfCars;
     }
 }

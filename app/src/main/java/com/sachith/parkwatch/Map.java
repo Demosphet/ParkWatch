@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -29,7 +28,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
     GoogleMap mGoogleMap;
-    GoogleApiClient mGoogleApiClient;
+//    GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

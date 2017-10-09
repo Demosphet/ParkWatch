@@ -190,25 +190,36 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        int resA = myDb.getAllData_carSpaceA();
+        int resB = myDb.getAllData_carSpaceB();
+        int resC = myDb.getAllData_carSpaceC();
+
+
         String item = adapterView.getItemAtPosition(i).toString();
-        parkedVehiclesNumberTextView.setText(item);
+        //parkedVehiclesNumberTextView.setText(item);
+
         int position = carSpaceSpinner.getSelectedItemPosition();
         int caID = getResources().getIdentifier("com.sachith.parkwatch:drawable/" + ca, null, null);
         int cbID = getResources().getIdentifier("com.sachith.parkwatch:drawable/" + cb, null, null);
         int ccID = getResources().getIdentifier("com.sachith.parkwatch:drawable/" + cc, null, null);
         carSpaceImageView = new ImageView(this);
 
+
+
         switch(position){
             case 0:
                 Toast.makeText(CapSpaces.this, "ca", Toast.LENGTH_LONG).show();
+                parkedVehiclesNumberTextView.setText(String.valueOf(resA));
                 carSpaceImageView.setImageResource(caID);
                 break;
             case 1:
                 Toast.makeText(CapSpaces.this, "cb", Toast.LENGTH_LONG).show();
+                parkedVehiclesNumberTextView.setText(String.valueOf(resB));
                 carSpaceImageView.setImageResource(cbID);
                 break;
             case 2:
                 Toast.makeText(CapSpaces.this, "cc", Toast.LENGTH_LONG).show();
+                parkedVehiclesNumberTextView.setText(String.valueOf(resC));
                 carSpaceImageView.setImageResource(ccID);
                 break;
         }
