@@ -19,6 +19,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -274,6 +275,7 @@ public class ReportVehicle extends AppCompatActivity {
         addDataButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String item;
                 boolean isInserted = myDb.insertData(registrationNumberEditText.getText().toString(),
                         carMakeSpinner.getSelectedItem().toString(),
                         vehicleModelEditText.getText().toString(),
@@ -282,6 +284,21 @@ public class ReportVehicle extends AppCompatActivity {
                         longitude.toString(),
                         latitude.toString(),
                         carSpacesSpinner.getSelectedItem().toString());
+
+                item = carSpacesSpinner.getSelectedItem().toString();
+
+                Toast.makeText(ReportVehicle.this,item, Toast.LENGTH_LONG).show();
+
+                if (item.equals("A")) {
+                    myDb.updateSpacesA();
+                    Log.d("db-debug","Item A");
+                } else if (item.equals("B")) {
+                    myDb.updateSpacesB();
+                    Log.d("db-debug","Item B");
+                } else if (item.equals("C")) {
+                    myDb.updateSpacesC();
+                    Log.d("db-debug","Item C");
+                }
 
                 if(isInserted == true){
                     Toast.makeText(ReportVehicle.this, "Data Inserted", Toast.LENGTH_LONG).show();

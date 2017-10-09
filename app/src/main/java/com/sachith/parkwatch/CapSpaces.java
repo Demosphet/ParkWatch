@@ -18,10 +18,6 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static com.sachith.parkwatch.R.drawable.ca;
-import static com.sachith.parkwatch.R.drawable.cb;
-import static com.sachith.parkwatch.R.drawable.cc;
-
 public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Button reportVehicleButton;
@@ -194,16 +190,13 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
         int resB = myDb.getAllData_carSpaceB();
         int resC = myDb.getAllData_carSpaceC();
 
-
         String item = adapterView.getItemAtPosition(i).toString();
-        //parkedVehiclesNumberTextView.setText(item);
 
         int position = carSpaceSpinner.getSelectedItemPosition();
-        int caID = getResources().getIdentifier("com.sachith.parkwatch:drawable/" + ca, null, null);
-        int cbID = getResources().getIdentifier("com.sachith.parkwatch:drawable/" + cb, null, null);
-        int ccID = getResources().getIdentifier("com.sachith.parkwatch:drawable/" + cc, null, null);
+        int caID = getResources().getIdentifier("Car Park A", "drawable", getPackageName());
+        int cbID = getResources().getIdentifier("Car Park A", "drawable", getPackageName());
+        int ccID = getResources().getIdentifier("Car Park A", "drawable", getPackageName());
         carSpaceImageView = new ImageView(this);
-
 
 
         switch(position){

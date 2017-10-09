@@ -133,6 +133,35 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         }
     }
 
+    public void updateSpacesA() {
+//        int NoOfCars = -1;
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        query = "UPDATE " + TABLE_SPACES + " SET " + COL_SPACES_NOOFCARS + " = ( " + COL_SPACES_NOOFCARS + " - 1 )" + " WHERE " + COL_SPACES_CARSPACES_ID + " = " + " \"A\";";
+        sqLiteDatabase.execSQL(query);
+        Log.d("db-debug",query);
+//        if (res.moveToFirst()) {
+//            do {
+//                NoOfCars = res.getInt(res.getColumnIndex(COL_SPACES_NOOFCARS));
+//            }
+//            while (res.moveToNext());
+//        }
+//        return NoOfCars;
+    }
+
+    public void updateSpacesB() {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        query = "UPDATE " + TABLE_SPACES + " SET " + COL_SPACES_NOOFCARS + " = ( " + COL_SPACES_NOOFCARS + " - 1 )" + " WHERE " + COL_SPACES_CARSPACES_ID + " = " + " \"B\";";
+        sqLiteDatabase.execSQL(query);
+        Log.d("db-debug",query);
+    }
+
+    public void updateSpacesC() {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        query = "UPDATE " + TABLE_SPACES + " SET " + COL_SPACES_NOOFCARS + " = ( " + COL_SPACES_NOOFCARS + " - 1 )" + " WHERE " + COL_SPACES_CARSPACES_ID + " = " + " \"C\";";
+        sqLiteDatabase.execSQL(query);
+        Log.d("db-debug",query);
+    }
+
     public Cursor getAllData(){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_VEHICLE,null);

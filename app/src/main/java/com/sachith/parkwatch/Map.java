@@ -27,12 +27,16 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
+    DatabaseHelper myDb;
+
     GoogleMap mGoogleMap;
 //    GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        myDb = new DatabaseHelper(this);
 
         if (googleServicesAvailable()) {
             Toast.makeText(this, "Connection with Play services established", Toast.LENGTH_LONG).show();
@@ -119,6 +123,10 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
     }
 
     private void goToLocationZoom(double lat, double lng, float zoom) {
+        int resA = myDb.getAllData_carSpaceA();
+        int resB = myDb.getAllData_carSpaceB();
+        int resC = myDb.getAllData_carSpaceC();
+
         LatLng ll = new LatLng(lat, lng);
         String titleA = "Car Park A";
         String titleB = "Car Park B";
@@ -126,23 +134,46 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, zoom);
         mGoogleMap.moveCamera(update);
 
-        MarkerOptions carParkA = new MarkerOptions()
+        MarkerOptions carParkAG = new MarkerOptions()
                 .position(new LatLng(-37.951725,145.252004))
                 .title(titleA)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-        MarkerOptions carParkB = new MarkerOptions()
+        MarkerOptions carParkBG = new MarkerOptions()
                 .position(new LatLng(-37.952086,145.251044))
                 .title(titleB)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-        MarkerOptions carParkC = new MarkerOptions()
+        MarkerOptions carParkCG = new MarkerOptions()
                 .position(new LatLng(-37.951133,145.250077))
                 .title(titleC)
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
 
+        MarkerOptions carParkAR = new MarkerOptions()
+                .position(new LatLng(-37.951725,145.252004))
+                .title(titleA)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        MarkerOptions carParkBR = new MarkerOptions()
+                .position(new LatLng(-37.952086,145.251044))
+                .title(titleB)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        MarkerOptions carParkCR = new MarkerOptions()
+                .position(new LatLng(-37.951133,145.250077))
+                .title(titleC)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
 
-        mGoogleMap.addMarker(carParkA);
-        mGoogleMap.addMarker(carParkB);
-        mGoogleMap.addMarker(carParkC);
+        if (resA > 0){
+            mGoogleMap.addMarker(carParkAR);
+        } if (resA <= 0){
+            mGoogleMap.addMarker(carParkAG);
+        } if (resB > 0){
+            mGoogleMap.addMarker(carParkBR);
+        } if (resB <= 0) {
+            mGoogleMap.addMarker(carParkBG);
+        } if (resC > 0){
+            mGoogleMap.addMarker(carParkCR);
+        } if (resC <= 0) {
+            mGoogleMap.addMarker(carParkCG);
+        }
+
 
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
