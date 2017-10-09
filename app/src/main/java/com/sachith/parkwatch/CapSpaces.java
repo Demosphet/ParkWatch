@@ -13,17 +13,23 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static com.sachith.parkwatch.R.drawable.ca;
+import static com.sachith.parkwatch.R.drawable.cb;
+import static com.sachith.parkwatch.R.drawable.cc;
+
 public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
     private Button reportVehicleButton;
+    private ImageView carSpaceImageView;
     Button viewDatabaseButton;
     Spinner carSpaceSpinner;
     TextView parkedVehiclesNumberTextView;
-    TextView placeHolderTextView;
+//    TextView placeHolderTextView;
 
     DatabaseHelper myDb;
 
@@ -34,7 +40,8 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
 
         carSpaceSpinner = (Spinner) findViewById(R.id.carSpaceSpinner);
         parkedVehiclesNumberTextView = (TextView) findViewById(R.id.parkedVehiclesNumberTextView);
-        placeHolderTextView = (TextView) findViewById(R.id.placeHolderTextView);
+        carSpaceImageView = (ImageView) findViewById(R.id.carSpaceImageView);
+//        placeHolderTextView = (TextView) findViewById(R.id.placeHolderTextView);
 
         //Declaring the "Report Vehicle" button
         reportVehicleButton = (Button) findViewById(R.id.reportVehicleButton);
@@ -185,7 +192,27 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
         String item = adapterView.getItemAtPosition(i).toString();
         parkedVehiclesNumberTextView.setText(item);
-        placeHolderTextView.setText(item);
+        int position = carSpaceSpinner.getSelectedItemPosition();
+        int caID = getResources().getIdentifier("com.sachith.parkwatch:drawable/" + ca, null, null);
+        int cbID = getResources().getIdentifier("com.sachith.parkwatch:drawable/" + cb, null, null);
+        int ccID = getResources().getIdentifier("com.sachith.parkwatch:drawable/" + cc, null, null);
+        carSpaceImageView = new ImageView(this);
+
+        switch(position){
+            case 0:
+                Toast.makeText(CapSpaces.this, "ca", Toast.LENGTH_LONG).show();
+                carSpaceImageView.setImageResource(caID);
+                break;
+            case 1:
+                Toast.makeText(CapSpaces.this, "cb", Toast.LENGTH_LONG).show();
+                carSpaceImageView.setImageResource(cbID);
+                break;
+            case 2:
+                Toast.makeText(CapSpaces.this, "cc", Toast.LENGTH_LONG).show();
+                carSpaceImageView.setImageResource(ccID);
+                break;
+        }
+//        placeHolderTextView.setText(item);
     }
 
     @Override
