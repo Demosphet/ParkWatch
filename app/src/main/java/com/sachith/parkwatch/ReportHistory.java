@@ -8,12 +8,18 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class ReportHistory extends AppCompatActivity {
 
     private TextView tableEntries;
+    ArrayList<Vehicle> vehicleList;
+    ListView reportHistoryListView;
+    Vehicle vehicle;
     DatabaseHelper myDb;
 
     @Override
@@ -21,10 +27,28 @@ public class ReportHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_history);
 
-        tableEntries = (TextView) findViewById(R.id.textView24);
+        //tableEntries = (TextView) findViewById(R.id.textView24);
 
         //Created an instance of a database
         myDb = new DatabaseHelper(this);
+
+        vehicleList = new ArrayList<>();
+        Cursor data = myDb.getAllData();
+
+        int numRows = data.getCount();
+
+        if (numRows == 0){
+            Toast.makeText(ReportHistory.this, "No Entries found", Toast.LENGTH_LONG).show();
+        } else {
+            while (data.moveToNext()){
+                vehicle = new Vehicle(data.getString(9),data.getString(1),data.getString(2),data.getString(3),data.getString(4), data.getString(5),data.getString(8));
+                vehicleList.add(vehicle);
+            }
+            ThreeColumn_ListAdapter adapter = new ThreeColumn_ListAdapter(this, R.layout.adapter_view_layout,vehicleList);
+            reportHistoryListView = (ListView) findViewById(R.id.reportHistoryListView);
+            reportHistoryListView.setAdapter(adapter);
+
+        }
 
         //Declaring the bottom navigation bar elements
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
