@@ -285,6 +285,10 @@ public class ReportVehicle extends AppCompatActivity {
 
                 if(isInserted == true){
                     Toast.makeText(ReportVehicle.this, "Data Inserted", Toast.LENGTH_LONG).show();
+                    registrationNumberEditText.setText("");
+                    vehicleModelEditText.setText("");
+                    vehicleColourEditText.setText("");
+                    gpsCoordinates.setText("");
                 } else {
                     Toast.makeText(ReportVehicle.this, "Data Failed to Insert", Toast.LENGTH_LONG).show();
                 }
@@ -313,7 +317,8 @@ public class ReportVehicle extends AppCompatActivity {
                             buffer.append("Type :           " + res.getString(5) + "\n");
                             buffer.append("Longitude :      " + res.getString(6) + "\n");
                             buffer.append("Latitude :       " + res.getString(7) + "\n");
-                            buffer.append("Car Space :      " + res.getString(8) + "\n\n");
+                            buffer.append("Car Space :      " + res.getString(8) + "\n");
+                            buffer.append("Time Stamp :     " + res.getString(9) + "\n\n");
 
                         }
 

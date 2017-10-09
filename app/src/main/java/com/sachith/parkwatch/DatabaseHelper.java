@@ -24,6 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper{
     public static final String COL_VEHICLE_LONGITUDE = "longitude";
     public static final String COL_VEHICLE_LATITUDE = "latitude";
     public static final String COL_VEHICLE_CARSPACE_ID = "carspace_id";
+    public static final String COL_VEHICLE_TIMESTAMP = "timestamp";
 
     public static final String TABLE_SPACES = "spaces";
     public static final String COL_SPACES_ID = "ID";
@@ -49,7 +50,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 COL_VEHICLE_TYPE + " TEXT," +
                 COL_VEHICLE_LONGITUDE + " TEXT," +
                 COL_VEHICLE_LATITUDE + " TEXT," +
-                COL_VEHICLE_CARSPACE_ID + " TEXT)");
+                COL_VEHICLE_CARSPACE_ID + " TEXT," +
+                COL_VEHICLE_TIMESTAMP + " DATETIME DEFAULT (DATETIME(CURRENT_TIMESTAMP,'LOCALTIME')))");
         Log.d("db-debug","Created Table 1");
         //Create CARSPACES table
 
