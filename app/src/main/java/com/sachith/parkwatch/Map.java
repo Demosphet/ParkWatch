@@ -8,8 +8,11 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -21,6 +24,7 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 //import android.location.LocationListener;
@@ -112,8 +116,52 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
     //Interfacing in Google Map API
     public void onMapReady(GoogleMap googleMap) {
+        final int resA = myDb.getAllData_carSpaceA();
+        final int resB = myDb.getAllData_carSpaceB();
+        final int resC = myDb.getAllData_carSpaceC();
+
         mGoogleMap = googleMap;
         goToLocationZoom(-37.951503, 145.251464, 17);
+
+
+        if(mGoogleMap != null) {
+            mGoogleMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter(){
+
+                @Override
+                public View getInfoWindow(Marker marker) {
+                    return null;
+                }
+
+                @Override
+                public View getInfoContents(Marker marker) {
+                    View v = getLayoutInflater().inflate(R.layout.carspace_infowindow,null);
+
+                    TextView parkValueLayoutTextView = (TextView) v.findViewById(R.id.parkValueLayoutTextView);
+                    TextView CarsLayoutValueTextView = (TextView) v.findViewById(R.id.CarsLayoutValueTextView);
+
+                    LatLng ll = marker.getPosition();
+                    parkValueLayoutTextView.setText(marker.getTitle());
+
+                    Log.d("db-debug","For Loop");
+                    for (int i=1; i<4; i=i+1) {
+                        if(marker.getTitle().toString().equals("A")){
+                            Log.d("db-debug",String.valueOf(resA));
+                            Log.d("db-debug","A");
+                            CarsLayoutValueTextView.setText(String.valueOf(resA));
+                        } else if (marker.getTitle().toString().equals("B")) {
+                            Log.d("db-debug",String.valueOf(resB));
+                            Log.d("db-debug","B");
+                            CarsLayoutValueTextView.setText(String.valueOf(resB));
+                        } else if (marker.getTitle().toString().equals("C")) {
+                            Log.d("db-debug",String.valueOf(resC));
+                            Log.d("db-debug","C");
+                            CarsLayoutValueTextView.setText(String.valueOf(resC));
+                        }
+                    }
+                    return v;
+                }
+            });
+        }
 //        mGoogleApiClient = new GoogleApiClient.Builder(this)
 //                .addApi(LocationServices.API)
 //                .addConnectionCallbacks(this)
@@ -128,50 +176,30 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         int resC = myDb.getAllData_carSpaceC();
 
         LatLng ll = new LatLng(lat, lng);
-        String titleA = "Car Park A";
-        String titleB = "Car Park B";
-        String titleC = "Car Park C";
+        String titleA = "A";
+        String titleB = "B";
+        String titleC = "C";
         CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, zoom);
         mGoogleMap.moveCamera(update);
 
-        MarkerOptions carParkAG = new MarkerOptions()
-                .position(new LatLng(-37.951725,145.252004))
-                .title(titleA)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-        MarkerOptions carParkBG = new MarkerOptions()
-                .position(new LatLng(-37.952086,145.251044))
-                .title(titleB)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-        MarkerOptions carParkCG = new MarkerOptions()
-                .position(new LatLng(-37.951133,145.250077))
-                .title(titleC)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-
-        MarkerOptions carParkAR = new MarkerOptions()
-                .position(new LatLng(-37.951725,145.252004))
-                .title(titleA)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        MarkerOptions carParkBR = new MarkerOptions()
-                .position(new LatLng(-37.952086,145.251044))
-                .title(titleB)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-        MarkerOptions carParkCR = new MarkerOptions()
-                .position(new LatLng(-37.951133,145.250077))
-                .title(titleC)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
-
         if (resA > 0){
-            mGoogleMap.addMarker(carParkAR);
+            getMarkerOptionsR(titleA,-37.951725,145.252004);
+
         } if (resA <= 0){
-            mGoogleMap.addMarker(carParkAG);
+            getMarkerOptionsG(titleA,-37.951725,145.252004);
+
         } if (resB > 0){
-            mGoogleMap.addMarker(carParkBR);
+            getMarkerOptionsR(titleB,-37.952086,145.251044);
+
         } if (resB <= 0) {
-            mGoogleMap.addMarker(carParkBG);
+            getMarkerOptionsG(titleB,-37.952086,145.251044);
+
         } if (resC > 0){
-            mGoogleMap.addMarker(carParkCR);
+            getMarkerOptionsR(titleC,-37.951133,145.250077);
+
         } if (resC <= 0) {
-            mGoogleMap.addMarker(carParkCG);
+            getMarkerOptionsG(titleC,-37.951133,145.250077);
+
         }
 
 
@@ -186,6 +214,26 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
             return;
         }
         mGoogleMap.setMyLocationEnabled(true);
+    }
+
+    @NonNull
+    private MarkerOptions getMarkerOptionsR(String titleA, double lat, double lng) {
+        MarkerOptions marker = new MarkerOptions()
+                .position(new LatLng(lat,lng))
+                .title(titleA)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+        mGoogleMap.addMarker(marker);
+        return marker;
+    }
+
+    @NonNull
+    private MarkerOptions getMarkerOptionsG(String titleA, double lat, double lng) {
+        MarkerOptions marker = new MarkerOptions()
+                .position(new LatLng(lat,lng))
+                .title(titleA)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+        mGoogleMap.addMarker(marker);
+        return marker;
     }
 
 //    LocationRequest mLocationRequest;

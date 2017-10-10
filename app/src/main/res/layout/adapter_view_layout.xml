@@ -2,103 +2,120 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_weight="100">
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/timeStamptTextView"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_weight="66"
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_weight="1"
         android:gravity="center"
         android:text="TextView"
         android:textAlignment="center" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="65"
+        android:layout_weight="1"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/registrationTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Registration"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/makeTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Make"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/modelTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Model"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/colourTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Colour"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/typeTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Type"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/carSpaceTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="Car Park"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="65"
+        android:layout_weight="60"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/registrationValueTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/makeValueTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/modelValueTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/colourValueTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/typeValueTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textAlignment="center"/>
 
         <TextView
             android:id="@+id/carSpaceValueTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textAlignment="center"/>
     </LinearLayout>
 
 </LinearLayout>

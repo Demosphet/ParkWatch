@@ -35,7 +35,9 @@
     <string name="gpsCoordinates">Coordinates</string>
     <string name="submitReport">Submit Report</string>
     <string name="viewReportDebug">View Report</string>
-    
+    <string name="parkText">"Park:      "</string>
+    <string name="remainingCarsText">"Cars:     "</string>
+
     <string-array name="carSpacesList">
         <item>A</item>
         <item>B</item>

@@ -25,6 +25,8 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
     Button viewDatabaseButton;
     Spinner carSpaceSpinner;
     TextView parkedVehiclesNumberTextView;
+    TextView inflowValueTextView;
+    TextView outflowValueTextView;
 //    TextView placeHolderTextView;
 
     DatabaseHelper myDb;
@@ -36,6 +38,8 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
 
         carSpaceSpinner = (Spinner) findViewById(R.id.carSpaceSpinner);
         parkedVehiclesNumberTextView = (TextView) findViewById(R.id.parkedVehiclesNumberTextView);
+        inflowValueTextView = (TextView) findViewById(R.id.inflowValueTextView);
+        outflowValueTextView = (TextView) findViewById(R.id.outflowValueTextView);
         carSpaceImageView = (ImageView) findViewById(R.id.carSpaceImageView);
 //        placeHolderTextView = (TextView) findViewById(R.id.placeHolderTextView);
 
@@ -190,6 +194,14 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
         int resB = myDb.getAllData_carSpaceB();
         int resC = myDb.getAllData_carSpaceC();
 
+        int resInA = myDb.getIn_carSpaceA();
+        int resInB = myDb.getIn_carSpaceB();
+        int resInC = myDb.getIn_carSpaceC();
+
+        int resOutA = myDb.getOut_carSpaceA();
+        int resOutB = myDb.getOut_carSpaceB();
+        int resOutC = myDb.getOut_carSpaceC();
+
         String item = adapterView.getItemAtPosition(i).toString();
 
         int position = carSpaceSpinner.getSelectedItemPosition();
@@ -203,16 +215,22 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
             case 0:
                 Toast.makeText(CapSpaces.this, "ca", Toast.LENGTH_LONG).show();
                 parkedVehiclesNumberTextView.setText(String.valueOf(resA));
+                inflowValueTextView.setText(String.valueOf(resInA));
+                outflowValueTextView.setText(String.valueOf(resOutA));
                 carSpaceImageView.setImageResource(caID);
                 break;
             case 1:
                 Toast.makeText(CapSpaces.this, "cb", Toast.LENGTH_LONG).show();
                 parkedVehiclesNumberTextView.setText(String.valueOf(resB));
+                inflowValueTextView.setText(String.valueOf(resInB));
+                outflowValueTextView.setText(String.valueOf(resOutB));
                 carSpaceImageView.setImageResource(cbID);
                 break;
             case 2:
                 Toast.makeText(CapSpaces.this, "cc", Toast.LENGTH_LONG).show();
                 parkedVehiclesNumberTextView.setText(String.valueOf(resC));
+                inflowValueTextView.setText(String.valueOf(resInC));
+                outflowValueTextView.setText(String.valueOf(resOutC));
                 carSpaceImageView.setImageResource(ccID);
                 break;
         }
