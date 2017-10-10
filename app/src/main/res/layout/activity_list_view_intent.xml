@@ -17,21 +17,23 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="10"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="50"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="10dp">
 
             <TextView
                 android:id="@+id/registrationTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Registration"
+                android:textAlignment="center"
                 android:textStyle="bold" />
 
             <TextView
@@ -39,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Make"
+                android:textAlignment="center"
                 android:textStyle="bold" />
 
             <TextView
@@ -46,6 +49,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Model"
+                android:textAlignment="center"
                 android:textStyle="bold" />
 
             <TextView
@@ -53,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Colour"
+                android:textAlignment="center"
                 android:textStyle="bold" />
 
             <TextView
@@ -60,6 +65,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Type"
+                android:textAlignment="center"
                 android:textStyle="bold" />
 
             <TextView
@@ -67,6 +73,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Car Parks"
+                android:textAlignment="center"
                 android:textStyle="bold" />
 
             <TextView
@@ -74,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Time and Date"
+                android:textAlignment="center"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -81,7 +89,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="50"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="10dp">
 
             <TextView
                 android:id="@+id/registrationValueTextView"
