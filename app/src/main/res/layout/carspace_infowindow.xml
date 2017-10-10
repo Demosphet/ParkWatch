@@ -63,7 +63,7 @@
             android:id="@+id/imageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:srcCompat="@drawable/ca" />
+            app:srcCompat="@mipmap/ca1" />
 
     </LinearLayout>
 

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:text="Details"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/registrationTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registration"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/makeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Make"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/modelTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Model"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/colourTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Colour"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/typeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Type"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/carSpaceTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Car Parks"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/timeStampTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Time and Date"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="50"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/registrationValueTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registration" />
+
+            <TextView
+                android:id="@+id/makeValueTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Make" />
+
+            <TextView
+                android:id="@+id/modelValueTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Model" />
+
+            <TextView
+                android:id="@+id/colourValueTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Colour" />
+
+            <TextView
+                android:id="@+id/typeValueTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Type" />
+
+            <TextView
+                android:id="@+id/carSpaceValueTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Car Parks" />
+
+            <TextView
+                android:id="@+id/timeStampValueTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Time and Date" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="40"
+        app:srcCompat="@drawable/cb1" />
+
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="40" />
+
+    <Button
+        android:id="@+id/buttonDelete"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="5"
+        android:text="Delete" />
+</LinearLayout>

@@ -51,8 +51,8 @@ public class DatabaseHelper extends SQLiteOpenHelper{
                 COL_VEHICLE_MODEL + " TEXT," +
                 COL_VEHICLE_COLOUR + " TEXT," +
                 COL_VEHICLE_TYPE + " TEXT," +
-                COL_VEHICLE_LONGITUDE + " TEXT," +
-                COL_VEHICLE_LATITUDE + " TEXT," +
+                COL_VEHICLE_LONGITUDE + " REAL," +
+                COL_VEHICLE_LATITUDE + " REAL," +
                 COL_VEHICLE_CARSPACE_ID + " TEXT," +
                 COL_VEHICLE_TIMESTAMP + " DATETIME DEFAULT (DATETIME(CURRENT_TIMESTAMP,'LOCALTIME'))," +
                 COL_VEHICLE_URL + " TEXT)";
@@ -173,6 +173,41 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         Cursor res = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_VEHICLE + " ORDER BY " + COL_VEHICLE_TIMESTAMP + " DESC;",null);
         return res;
+    }
+
+    public Vehicle getAllData_ListView(String id){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        String query = "SELECT " +
+                COL_VEHICLE_ID + ", " +
+                COL_VEHICLE_REGISTRATION + ", " +
+                COL_VEHICLE_MAKE + ", " +
+                COL_VEHICLE_MODEL + ", " +
+                COL_VEHICLE_COLOUR + ", " +
+                COL_VEHICLE_TYPE + ", " +
+                COL_VEHICLE_LONGITUDE + ", " +
+                COL_VEHICLE_LATITUDE + ", " +
+                COL_VEHICLE_CARSPACE_ID + ", " +
+                COL_VEHICLE_TIMESTAMP + ", " +
+                COL_VEHICLE_URL +
+                " FROM " + TABLE_VEHICLE +
+                " WHERE " + COL_VEHICLE_ID +
+                " = " + id + ";";
+        Cursor res = sqLiteDatabase.rawQuery(query,null);
+        res.moveToFirst();
+        Vehicle vehicleHistory = new Vehicle(
+                res.getString(res.getColumnIndex("id")),
+                res.getString(res.getColumnIndex("registration")),
+                res.getString(res.getColumnIndex("make")),
+                res.getString(res.getColumnIndex("model")),
+                res.getString(res.getColumnIndex("colour")),
+                res.getString(res.getColumnIndex("type")),
+                res.getString(res.getColumnIndex("longitude")),
+                res.getString(res.getColumnIndex("latitude")),
+                res.getString(res.getColumnIndex("carspace_id")),
+                res.getString(res.getColumnIndex("timestamp")),
+                res.getString(res.getColumnIndex("imageURL"))
+        );
+        return vehicleHistory;
     }
 
     public Cursor getAllData_carSpace(){
@@ -297,5 +332,15 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             while (res.moveToNext());
         }
         return NoOfCars;
+    }
+
+    public void deleteCar(String id, String carSpace){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_SPACES + " SET " + COL_SPACES_NOOFCARS + " = ( " + COL_SPACES_NOOFCARS + " + 1 )" + " WHERE " + COL_SPACES_CARSPACES_ID + " = " + "\"" + carSpace + "\"" + " ;";
+        sqLiteDatabase.execSQL(query);
+        Log.d("db-debug",query);
+        query = "DELETE FROM " + TABLE_VEHICLE + " WHERE " + COL_VEHICLE_ID + " = " + id + " ;";
+        sqLiteDatabase.execSQL(query);
+        Log.d("db-debug",query);
     }
 }

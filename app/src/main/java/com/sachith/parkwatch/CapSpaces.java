@@ -205,10 +205,6 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
         String item = adapterView.getItemAtPosition(i).toString();
 
         int position = carSpaceSpinner.getSelectedItemPosition();
-        int caID = getResources().getIdentifier("Car Park A", "drawable", getPackageName());
-        int cbID = getResources().getIdentifier("Car Park A", "drawable", getPackageName());
-        int ccID = getResources().getIdentifier("Car Park A", "drawable", getPackageName());
-        carSpaceImageView = new ImageView(this);
 
 
         switch(position){
@@ -217,24 +213,23 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
                 parkedVehiclesNumberTextView.setText(String.valueOf(resA));
                 inflowValueTextView.setText(String.valueOf(resInA));
                 outflowValueTextView.setText(String.valueOf(resOutA));
-                carSpaceImageView.setImageResource(caID);
+                carSpaceImageView.setImageResource(R.drawable.ca1);
                 break;
             case 1:
                 Toast.makeText(CapSpaces.this, "cb", Toast.LENGTH_LONG).show();
                 parkedVehiclesNumberTextView.setText(String.valueOf(resB));
                 inflowValueTextView.setText(String.valueOf(resInB));
                 outflowValueTextView.setText(String.valueOf(resOutB));
-                carSpaceImageView.setImageResource(cbID);
+                carSpaceImageView.setImageResource(R.drawable.cb1);
                 break;
             case 2:
                 Toast.makeText(CapSpaces.this, "cc", Toast.LENGTH_LONG).show();
                 parkedVehiclesNumberTextView.setText(String.valueOf(resC));
                 inflowValueTextView.setText(String.valueOf(resInC));
                 outflowValueTextView.setText(String.valueOf(resOutC));
-                carSpaceImageView.setImageResource(ccID);
+                carSpaceImageView.setImageResource(R.drawable.cc1);
                 break;
         }
-//        placeHolderTextView.setText(item);
     }
 
     @Override

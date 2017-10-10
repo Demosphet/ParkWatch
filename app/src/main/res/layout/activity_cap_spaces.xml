@@ -79,7 +79,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ca" />
+            app:srcCompat="@mipmap/ca1" />
     </android.support.constraint.ConstraintLayout>
 
     <Button

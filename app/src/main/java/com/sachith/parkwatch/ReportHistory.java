@@ -6,13 +6,18 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+
+import static com.sachith.parkwatch.R.id.carSpaces;
 
 public class ReportHistory extends AppCompatActivity {
 
@@ -27,8 +32,6 @@ public class ReportHistory extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_history);
 
-        //tableEntries = (TextView) findViewById(R.id.textView24);
-
         //Created an instance of a database
         myDb = new DatabaseHelper(this);
 
@@ -41,14 +44,38 @@ public class ReportHistory extends AppCompatActivity {
             Toast.makeText(ReportHistory.this, "No Entries found", Toast.LENGTH_LONG).show();
         } else {
             while (data.moveToNext()){
-                vehicle = new Vehicle(data.getString(9),data.getString(1),data.getString(2),data.getString(3),data.getString(4), data.getString(5),data.getString(8));
+                vehicle = new Vehicle(
+                        data.getString(0),
+                        data.getString(1),
+                        data.getString(2),
+                        data.getString(3),
+                        data.getString(4),
+                        data.getString(5),
+                        data.getString(6),
+                        data.getString(7),
+                        data.getString(8),
+                        data.getString(9),
+                        data.getString(10)
+                );
                 vehicleList.add(vehicle);
             }
             ThreeColumn_ListAdapter adapter = new ThreeColumn_ListAdapter(this, R.layout.adapter_view_layout,vehicleList);
             reportHistoryListView = (ListView) findViewById(R.id.reportHistoryListView);
             reportHistoryListView.setAdapter(adapter);
 
+            reportHistoryListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Vehicle vehicleHistory = (Vehicle) adapterView.getItemAtPosition(i);
+                    String vehicleID = vehicleHistory.getId();
+                    Log.d("dbDebug", vehicleID);
+                    Intent ListViewIntent = new Intent(ReportHistory.this, com.sachith.parkwatch.ListViewIntent.class);
+                    ListViewIntent.putExtra("com.sachith.parkwatch.ID",vehicleID);
+                    startActivity(ListViewIntent);
+                    }
+                });
         }
+
 
         //Declaring the bottom navigation bar elements
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -69,7 +96,7 @@ public class ReportHistory extends AppCompatActivity {
                         Toast.makeText(ReportHistory.this, "Report Vehicle", Toast.LENGTH_SHORT).show();
                         break;
 
-                    case R.id.carSpaces:
+                    case carSpaces:
                         Toast.makeText(ReportHistory.this, "Car Spaces", Toast.LENGTH_SHORT).show();
                         Intent intent1 = new Intent(ReportHistory.this, CapSpaces.class);
                         startActivity(intent1);

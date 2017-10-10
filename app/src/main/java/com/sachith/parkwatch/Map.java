@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -138,6 +139,7 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
 
                     TextView parkValueLayoutTextView = (TextView) v.findViewById(R.id.parkValueLayoutTextView);
                     TextView CarsLayoutValueTextView = (TextView) v.findViewById(R.id.CarsLayoutValueTextView);
+                    ImageView imageView = (ImageView) v.findViewById(R.id.imageView);
 
                     LatLng ll = marker.getPosition();
                     parkValueLayoutTextView.setText(marker.getTitle());
@@ -147,14 +149,17 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
                         if(marker.getTitle().toString().equals("A")){
                             Log.d("db-debug",String.valueOf(resA));
                             Log.d("db-debug","A");
+                            imageView.setImageResource(R.drawable.ca1);
                             CarsLayoutValueTextView.setText(String.valueOf(resA));
                         } else if (marker.getTitle().toString().equals("B")) {
                             Log.d("db-debug",String.valueOf(resB));
                             Log.d("db-debug","B");
+                            imageView.setImageResource(R.drawable.cb1);
                             CarsLayoutValueTextView.setText(String.valueOf(resB));
                         } else if (marker.getTitle().toString().equals("C")) {
                             Log.d("db-debug",String.valueOf(resC));
                             Log.d("db-debug","C");
+                            imageView.setImageResource(R.drawable.cc1);
                             CarsLayoutValueTextView.setText(String.valueOf(resC));
                         }
                     }
