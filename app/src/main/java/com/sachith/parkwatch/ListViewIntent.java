@@ -64,7 +64,6 @@ public class ListViewIntent extends AppCompatActivity implements OnMapReadyCallb
 
         if(googleServicesAvailable()){
             Toast.makeText(this, "Connection with Play services established", Toast.LENGTH_LONG).show();
-//            setContentView(R.layout.activity_list_view_intent);
             initMap();
         } else {
             //No Google Maps Layout
@@ -76,8 +75,6 @@ public class ListViewIntent extends AppCompatActivity implements OnMapReadyCallb
             Vehicle viewVehicle = myDb.getAllData_ListView(id);
 
             Uri imageUrl = Uri.parse(viewVehicle.getImageUrl());
-//            textView.setText(imageUrl.toString());
-//            textView.append("\n" + viewVehicle.getId());
 
             registrationValueTextView.setText(viewVehicle.getRegistration());
             makeValueTextView.setText(viewVehicle.getMake());

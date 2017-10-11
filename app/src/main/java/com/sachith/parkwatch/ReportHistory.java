@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,7 +20,6 @@ import static com.sachith.parkwatch.R.id.carSpaces;
 
 public class ReportHistory extends AppCompatActivity {
 
-    private TextView tableEntries;
     ArrayList<Vehicle> vehicleList;
     ListView reportHistoryListView;
     Vehicle vehicle;
@@ -86,7 +84,7 @@ public class ReportHistory extends AppCompatActivity {
         menuItem.setChecked(true);
 
         //Creating a switch statement to determine where to point the user when interacting with
-        // the bottom navigation bar
+        //the bottom navigation bar
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -118,23 +116,5 @@ public class ReportHistory extends AppCompatActivity {
                 return true;
             }
         });
-//
-//        Cursor res = myDb.getAllData();
-//        StringBuffer buffer = new StringBuffer();
-//        while (res.moveToNext()) {
-//            buffer.append("ID :             " + res.getString(0) + "\n");
-//            buffer.append("Registration :   " + res.getString(1) + "\n");
-//            buffer.append("Make :           " + res.getString(2) + "\n");
-//            buffer.append("Model :          " + res.getString(3) + "\n");
-//            buffer.append("Colour :         " + res.getString(4) + "\n");
-//            buffer.append("Type :           " + res.getString(5) + "\n");
-//            buffer.append("Longitude :      " + res.getString(6) + "\n");
-//            buffer.append("Latitude :       " + res.getString(7) + "\n");
-//            buffer.append("Car Space :      " + res.getString(8) + "\n");
-//            buffer.append("Time Stamp :     " + res.getString(9) + "\n");
-//            buffer.append("Image URI :      " + res.getString(10) + "\n\n");
-//
-//        }
-//        tableEntries.setText(buffer);
     }
 }

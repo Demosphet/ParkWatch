@@ -167,12 +167,6 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
                 }
             });
         }
-//        mGoogleApiClient = new GoogleApiClient.Builder(this)
-//                .addApi(LocationServices.API)
-//                .addConnectionCallbacks(this)
-//                .addOnConnectionFailedListener(this)
-//                .build();
-//        mGoogleApiClient.connect();
     }
 
     private void goToLocationZoom(double lat, double lng, float zoom) {
@@ -240,48 +234,4 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         mGoogleMap.addMarker(marker);
         return marker;
     }
-
-//    LocationRequest mLocationRequest;
-//
-//    @Override
-//    public void onConnected(@Nullable Bundle bundle) {
-//        mLocationRequest = LocationRequest.create();
-//        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-//        mLocationRequest.setInterval(4000);
-//
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//                // TODO: Consider calling
-//                //    ActivityCompat#requestPermissions
-//                // here to request the missing permissions, and then overriding
-//                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//                //                                          int[] grantResults)
-//                // to handle the case where the user grants the permission. See the documentation
-//                // for ActivityCompat#requestPermissions for more details.
-//                return;
-//            }
-//        }
-//        LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, (com.google.android.gms.location.LocationListener) this);
-//    }
-//
-//    @Override
-//    public void onConnectionSuspended(int i) {
-//
-//    }
-//
-//    @Override
-//    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-//
-//    }
-//
-//    @Override
-//    public void onLocationChanged(Location location) {
-//        if(location == null) {
-//            Toast.makeText(this, "Location is currently unavailable", Toast.LENGTH_LONG).show();
-//        } else {
-//            LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
-//            CameraUpdate update = CameraUpdateFactory.newLatLngZoom(ll, 19);
-//            mGoogleMap.animateCamera(update);
-//        }
-//    }
 }

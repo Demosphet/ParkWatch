@@ -1,11 +1,9 @@
 package com.sachith.parkwatch;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,12 +20,10 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
 
     private Button reportVehicleButton;
     private ImageView carSpaceImageView;
-    Button viewDatabaseButton;
     Spinner carSpaceSpinner;
     TextView parkedVehiclesNumberTextView;
     TextView inflowValueTextView;
     TextView outflowValueTextView;
-//    TextView placeHolderTextView;
 
     DatabaseHelper myDb;
 
@@ -41,11 +37,9 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
         inflowValueTextView = (TextView) findViewById(R.id.inflowValueTextView);
         outflowValueTextView = (TextView) findViewById(R.id.outflowValueTextView);
         carSpaceImageView = (ImageView) findViewById(R.id.carSpaceImageView);
-//        placeHolderTextView = (TextView) findViewById(R.id.placeHolderTextView);
 
         //Declaring the "Report Vehicle" button
         reportVehicleButton = (Button) findViewById(R.id.reportVehicleButton);
-        viewDatabaseButton = (Button) findViewById(R.id.viewDatabaseButton);
 
         //Created an instance of a database
         myDb = new DatabaseHelper(this);
@@ -68,8 +62,6 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         carSpaceSpinner.setAdapter(myAdapter);
 
-//        carSpaceSpinnerFunction();
-        viewDataTable2();
 
         //Declaring the bottom navigation bar elements
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -114,79 +106,6 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
         });
     }
 
-    public void viewDataTable2() {
-        viewDatabaseButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Cursor res = myDb.getAllData_carSpace();
-                        if(res.getCount() == 0) {
-                            showMessageFunction("Error", "No data found");
-                            return;
-                        }
-                        StringBuffer buffer = new StringBuffer();
-                        while (res.moveToNext()) {
-                            buffer.append("ID :             " + res.getString(0) + "\n");
-                            buffer.append("Car Space :      " + res.getString(1) + "\n");
-                            buffer.append("Number of Cars : " + res.getString(2) + "\n");
-                            buffer.append("Image URL :      " + res.getString(3) + "\n\n");
-                        }
-
-                        showMessageFunction("Data",buffer.toString());
-                    }
-                }
-        );
-    }
-
-    public void showMessageFunction(String title, String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.show();
-    }
-
-
-    public void carSpacesCheck(){
-        Cursor res = myDb.getAllData_carSpace();
-        StringBuffer bufferIntNoOfCarsA = new StringBuffer();
-        StringBuffer bufferIntNoOfCarsB = new StringBuffer();
-        StringBuffer bufferIntNoOfCarsC = new StringBuffer();
-//        StringBuffer bufferID = new StringBuffer();
-//        StringBuffer bufferCarSpace = new StringBuffer();
-//        StringBuffer bufferNoOfCars = new StringBuffer();
-//        StringBuffer bufferImageURL = new StringBuffer();
-
-
-        double ID = 1;
-        while (res.moveToNext()) {
-            if (res.getString(2) == "A") {
-                if (res.getDouble(0) >= ID) {
-                    bufferIntNoOfCarsA = null;
-                    bufferIntNoOfCarsA.append(res.getString(2));
-                    parkedVehiclesNumberTextView.setText(bufferIntNoOfCarsA);
-                }
-            } else if (res.getString(2) == "B") {
-                if (res.getDouble(0) >= ID) {
-                    bufferIntNoOfCarsB = null;
-                    bufferIntNoOfCarsB.append(res.getString(2));
-                    parkedVehiclesNumberTextView.setText(bufferIntNoOfCarsB);
-                }
-            } else if (res.getString(2) == "A") {
-                if (res.getDouble(0) >= ID) {
-                    bufferIntNoOfCarsA = null;
-                    bufferIntNoOfCarsA.append(res.getString(2));
-                    parkedVehiclesNumberTextView.setText(bufferIntNoOfCarsC);
-                }
-            }
-//            bufferID.append(res.getString(0) + "\n");
-//            bufferCarSpace.append(res.getString(1) + "\n");
-//            bufferNoOfCars.append(res.getString(2) + "\n");
-//            bufferImageURL.append(res.getString(3) + "\n");
-            ID++;
-        }
-//        parkedVehiclesNumberTextView.setText(bufferIntNoOfCarsA);
-    }
 
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -209,21 +128,18 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
 
         switch(position){
             case 0:
-                Toast.makeText(CapSpaces.this, "ca", Toast.LENGTH_LONG).show();
                 parkedVehiclesNumberTextView.setText(String.valueOf(resA));
                 inflowValueTextView.setText(String.valueOf(resInA));
                 outflowValueTextView.setText(String.valueOf(resOutA));
                 carSpaceImageView.setImageResource(R.drawable.ca1);
                 break;
             case 1:
-                Toast.makeText(CapSpaces.this, "cb", Toast.LENGTH_LONG).show();
                 parkedVehiclesNumberTextView.setText(String.valueOf(resB));
                 inflowValueTextView.setText(String.valueOf(resInB));
                 outflowValueTextView.setText(String.valueOf(resOutB));
                 carSpaceImageView.setImageResource(R.drawable.cb1);
                 break;
             case 2:
-                Toast.makeText(CapSpaces.this, "cc", Toast.LENGTH_LONG).show();
                 parkedVehiclesNumberTextView.setText(String.valueOf(resC));
                 inflowValueTextView.setText(String.valueOf(resInC));
                 outflowValueTextView.setText(String.valueOf(resOutC));

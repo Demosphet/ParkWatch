@@ -3,7 +3,6 @@ package com.sachith.parkwatch;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -17,7 +16,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.FileProvider;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -26,7 +24,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,11 +56,9 @@ public class ReportVehicle extends AppCompatActivity {
     Spinner carMakeSpinner;
     Spinner carTypeSpinner;
     Button addDataButton;
-    Button viewDataButton;
 
     Double longitude;
     Double latitude;
-    private ImageView capturedImage;
     public Uri photoURI;
 
     DatabaseHelper myDb;
@@ -83,14 +78,10 @@ public class ReportVehicle extends AppCompatActivity {
         carTypeSpinner = (Spinner) findViewById(R.id.carTypeSpinner);
 
         addDataButton = (Button) findViewById(R.id.addDataButton);
-        viewDataButton = (Button) findViewById(R.id.viewDataButton);
 
         gpsPositionButton = (Button) findViewById(R.id.gpsPositionButton);
         gpsCoordinates = (TextView) findViewById(R.id.gpsCoordinates);
         locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-
-        capturedImage = (ImageView) findViewById(R.id.capturedImage);
-
 
 
         //Initialising the Spinner for Car Spaces
@@ -111,14 +102,8 @@ public class ReportVehicle extends AppCompatActivity {
         myAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         carTypeSpinner.setAdapter(myAdapterType);
 
-
-
-
         configureButton();
         addDataFunction();
-        viewDataFunction();
-
-
 
 
         //Declaring the bottom navigation bar elements
@@ -277,82 +262,61 @@ public class ReportVehicle extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String item;
-                boolean isInserted = myDb.insertData(registrationNumberEditText.getText().toString(),
-                        carMakeSpinner.getSelectedItem().toString(),
-                        vehicleModelEditText.getText().toString(),
-                        vehicleColourEditText.getText().toString(),
-                        carTypeSpinner.getSelectedItem().toString(),
-                        longitude.toString(),
-                        latitude.toString(),
-                        carSpacesSpinner.getSelectedItem().toString(),
-                        photoURI.toString());
-
-                item = carSpacesSpinner.getSelectedItem().toString();
-
-                Toast.makeText(ReportVehicle.this,item, Toast.LENGTH_LONG).show();
-
-                if (item.equals("A")) {
-                    myDb.updateSpacesA();
-                    Log.d("db-debug","Item A");
-                } else if (item.equals("B")) {
-                    myDb.updateSpacesB();
-                    Log.d("db-debug","Item B");
-                } else if (item.equals("C")) {
-                    myDb.updateSpacesC();
-                    Log.d("db-debug","Item C");
-                }
-
-                if(isInserted == true){
-                    Toast.makeText(ReportVehicle.this, "Data Inserted", Toast.LENGTH_LONG).show();
-                    registrationNumberEditText.setText("");
-                    vehicleModelEditText.setText("");
-                    vehicleColourEditText.setText("");
-                    gpsCoordinates.setText("");
+                if(registrationNumberEditText.getText().toString().equals("")){
+                    Toast.makeText(ReportVehicle.this, "Registration Field is Empty", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (vehicleModelEditText.getText().toString().equals("")){
+                    Toast.makeText(ReportVehicle.this, "Model Field is Empty", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (vehicleColourEditText.getText().toString().equals("")){
+                    Toast.makeText(ReportVehicle.this, "Colour Field is Empty", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (longitude==null){
+                    Toast.makeText(ReportVehicle.this, "GPS is not capture", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (latitude==null){
+                    Toast.makeText(ReportVehicle.this, "GPS is not capture", Toast.LENGTH_LONG).show();
+                    return;
+                } else if (photoURI==null){
+                    Toast.makeText(ReportVehicle.this, "An Image has not been captured", Toast.LENGTH_LONG).show();
+                    return;
                 } else {
-                    Toast.makeText(ReportVehicle.this, "Data Failed to Insert", Toast.LENGTH_LONG).show();
+                    boolean isInserted = myDb.insertData(registrationNumberEditText.getText().toString(),
+                            carMakeSpinner.getSelectedItem().toString(),
+                            vehicleModelEditText.getText().toString(),
+                            vehicleColourEditText.getText().toString(),
+                            carTypeSpinner.getSelectedItem().toString(),
+                            longitude.toString(),
+                            latitude.toString(),
+                            carSpacesSpinner.getSelectedItem().toString(),
+                            photoURI.toString());
+
+                    item = carSpacesSpinner.getSelectedItem().toString();
+
+                    Toast.makeText(ReportVehicle.this,item, Toast.LENGTH_LONG).show();
+
+                    if (item.equals("A")) {
+                        myDb.updateSpacesA();
+                        Log.d("db-debug","Item A");
+                    } else if (item.equals("B")) {
+                        myDb.updateSpacesB();
+                        Log.d("db-debug","Item B");
+                    } else if (item.equals("C")) {
+                        myDb.updateSpacesC();
+                        Log.d("db-debug","Item C");
+                    }
+
+                    if(isInserted == true){
+                        Toast.makeText(ReportVehicle.this, "Data Inserted", Toast.LENGTH_LONG).show();
+                        registrationNumberEditText.setText("");
+                        vehicleModelEditText.setText("");
+                        vehicleColourEditText.setText("");
+                        gpsCoordinates.setText("");
+                    } else {
+                        Toast.makeText(ReportVehicle.this, "Data Failed to Insert", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
-    }
-
-    //Show the content of the database function
-    public void viewDataFunction(){
-        viewDataButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Cursor res = myDb.getAllData();
-                        if(res.getCount() == 0) {
-                            showMessageFunction("Error", "No data found");
-                            return;
-                        }
-                        StringBuffer buffer = new StringBuffer();
-                        while (res.moveToNext()) {
-                            buffer.append("ID :             " + res.getString(0) + "\n");
-                            buffer.append("Registration :   " + res.getString(1) + "\n");
-                            buffer.append("Make :           " + res.getString(2) + "\n");
-                            buffer.append("Model :          " + res.getString(3) + "\n");
-                            buffer.append("Colour :         " + res.getString(4) + "\n");
-                            buffer.append("Type :           " + res.getString(5) + "\n");
-                            buffer.append("Longitude :      " + res.getString(6) + "\n");
-                            buffer.append("Latitude :       " + res.getString(7) + "\n");
-                            buffer.append("Car Space :      " + res.getString(8) + "\n");
-                            buffer.append("Time Stamp :     " + res.getString(9) + "\n");
-                            buffer.append("Image URI :      " + res.getString(10) + "\n\n");
-
-                        }
-
-                        showMessageFunction("Data",buffer.toString());
-                    }
-                }
-        );
-    }
-
-    public void showMessageFunction(String title, String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        builder.setTitle(title);
-        builder.setMessage(message);
-        builder.show();
     }
 }
