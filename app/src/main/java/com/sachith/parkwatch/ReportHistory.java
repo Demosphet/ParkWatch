@@ -33,6 +33,19 @@ public class ReportHistory extends AppCompatActivity {
         //Created an instance of a database
         myDb = new DatabaseHelper(this);
 
+//        References for ListView
+//        1st Tutorial Name: Adding multiple columns to your ListView (part 1/3)
+//        Link: https://www.youtube.com/watch?v=8K-6gdTlGEA&t=72s
+//
+//        1.1st Tutorial Name: Android Beginner Tutorial #8 - Custom ListView Adapter For Displaying Multiple Columns
+//        Link: https://www.youtube.com/watch?annotation_id=annotation_4035470155&feature=iv&src_vid=jpt3Md9aDIQ&v=E6vE8fqQPTE
+//
+//        2nd Tutorial Name: Adding multiple columns to your ListView (part 2/3)
+//        Link: https://www.youtube.com/watch?v=hHQqFGpod14
+//
+//        3rd Tutorial Name: Adding multiple columns to your ListView (part 3/3)
+//        Link: https://www.youtube.com/watch?v=jpt3Md9aDIQ&t=1s
+
         vehicleList = new ArrayList<>();
         Cursor data = myDb.getAllData();
 
@@ -74,6 +87,14 @@ public class ReportHistory extends AppCompatActivity {
                 });
         }
 
+//        References for Bottom Navigation Bar
+//        First Tutorial:
+//        Android Studio Tutorial - Bottom Navigation View
+//        https://www.youtube.com/watch?v=wcE7IIHKfRg&t=131s
+//
+//        Second Tutorial:
+//        Bottom Navigation Bar with Activities - Android Advanced Tutorial #6
+//        https://www.youtube.com/watch?v=xyGrdOqseuw&t=97s
 
         //Declaring the bottom navigation bar elements
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);

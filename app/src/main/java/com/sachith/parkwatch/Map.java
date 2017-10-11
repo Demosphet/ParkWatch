@@ -51,6 +51,15 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
             //No Google Maps Layout
         }
 
+//        References for Bottom Navigation Bar
+//        First Tutorial:
+//        Android Studio Tutorial - Bottom Navigation View
+//        https://www.youtube.com/watch?v=wcE7IIHKfRg&t=131s
+//
+//        Second Tutorial:
+//        Bottom Navigation Bar with Activities - Android Advanced Tutorial #6
+//        https://www.youtube.com/watch?v=xyGrdOqseuw&t=97s
+
         //Declaring the bottom navigation bar elements
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -93,6 +102,22 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
         });
 
     }
+
+//    Check references below for GoogleMap implementations
+//    Name: Android Maps: Part 1: Basic Maps
+//    Link:https://www.youtube.com/watch?v=lchyOhPREh4
+//
+//    Name: Google Documentation: Android - Maps Android API
+//    Link: https://developers.google.com/maps/documentation/android-api/start
+//
+//    Name: Android Maps: Part 2: More Features
+//    Link: https://www.youtube.com/watch?v=Z3mKhMkdUFk
+//
+//    Name: cannot be cast to com.google.android.gms.location.LocationListener exception in android
+//    Link: https://stackoverflow.com/questions/39199250/cannot-be-cast-to-com-google-android-gms-location-locationlistener-exception-in
+//
+//    Name: Android Maps: Part 3: Markers
+//    Link: https://www.youtube.com/watch?v=k253ec4m33A
 
     //Creating and instance of a Map View fragment
     private void initMap() {
@@ -144,22 +169,26 @@ public class Map extends AppCompatActivity implements OnMapReadyCallback {
                     LatLng ll = marker.getPosition();
                     parkValueLayoutTextView.setText(marker.getTitle());
 
+//          References for ImageView
+//          https://stackoverflow.com/questions/5089300/how-can-i-change-the-image-of-an-imageview
+
+
                     Log.d("db-debug","For Loop");
                     for (int i=1; i<4; i=i+1) {
                         if(marker.getTitle().toString().equals("A")){
                             Log.d("db-debug",String.valueOf(resA));
                             Log.d("db-debug","A");
-                            imageView.setImageResource(R.drawable.ca1);
+                            imageView.setImageResource(R.drawable.ca1); //Reference check above
                             CarsLayoutValueTextView.setText(String.valueOf(resA));
                         } else if (marker.getTitle().toString().equals("B")) {
                             Log.d("db-debug",String.valueOf(resB));
                             Log.d("db-debug","B");
-                            imageView.setImageResource(R.drawable.cb1);
+                            imageView.setImageResource(R.drawable.cb1); //Reference check above
                             CarsLayoutValueTextView.setText(String.valueOf(resB));
                         } else if (marker.getTitle().toString().equals("C")) {
                             Log.d("db-debug",String.valueOf(resC));
                             Log.d("db-debug","C");
-                            imageView.setImageResource(R.drawable.cc1);
+                            imageView.setImageResource(R.drawable.cc1); //Reference check above
                             CarsLayoutValueTextView.setText(String.valueOf(resC));
                         }
                     }

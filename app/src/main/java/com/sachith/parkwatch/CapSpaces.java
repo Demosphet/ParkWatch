@@ -63,6 +63,16 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
         carSpaceSpinner.setAdapter(myAdapter);
 
 
+//        References for Bottom Navigation Bar
+//        First Tutorial:
+//        Android Studio Tutorial - Bottom Navigation View
+//        https://www.youtube.com/watch?v=wcE7IIHKfRg&t=131s
+//
+//        Second Tutorial:
+//        Bottom Navigation Bar with Activities - Android Advanced Tutorial #6
+//        https://www.youtube.com/watch?v=xyGrdOqseuw&t=97s
+
+
         //Declaring the bottom navigation bar elements
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -126,24 +136,35 @@ public class CapSpaces extends AppCompatActivity implements AdapterView.OnItemSe
         int position = carSpaceSpinner.getSelectedItemPosition();
 
 
+//          References for ImageView
+//          https://stackoverflow.com/questions/5089300/how-can-i-change-the-image-of-an-imageview
+
+//        References for Changing the activity through the spinner
+//        Tutorial Name: Spinner OnItemSelectedListener | Android Studio
+//        Link: https://www.youtube.com/watch?v=pQ-kDS3TxhY
+//        Tutorial Name: Android Drop Down List Tutorial
+//        Link: https://www.youtube.com/watch?v=urQp7KsQhW8
+
+
+
         switch(position){
             case 0:
                 parkedVehiclesNumberTextView.setText(String.valueOf(resA));
                 inflowValueTextView.setText(String.valueOf(resInA));
                 outflowValueTextView.setText(String.valueOf(resOutA));
-                carSpaceImageView.setImageResource(R.drawable.ca1);
+                carSpaceImageView.setImageResource(R.drawable.ca1); //Check Reference above
                 break;
             case 1:
                 parkedVehiclesNumberTextView.setText(String.valueOf(resB));
                 inflowValueTextView.setText(String.valueOf(resInB));
                 outflowValueTextView.setText(String.valueOf(resOutB));
-                carSpaceImageView.setImageResource(R.drawable.cb1);
+                carSpaceImageView.setImageResource(R.drawable.cb1); //Check Reference above
                 break;
             case 2:
                 parkedVehiclesNumberTextView.setText(String.valueOf(resC));
                 inflowValueTextView.setText(String.valueOf(resInC));
                 outflowValueTextView.setText(String.valueOf(resOutC));
-                carSpaceImageView.setImageResource(R.drawable.cc1);
+                carSpaceImageView.setImageResource(R.drawable.cc1); //Check Reference above
                 break;
         }
     }

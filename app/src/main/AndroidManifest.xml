@@ -47,6 +47,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--Placing an Orientation Lock https://stackoverflow.com/questions/2663427/how-is-application-orientation-landscape-or-portrait-locked-->
         <activity
             android:name=".Map"
             android:configChanges="keyboardHidden|orientation|screenSize"
@@ -63,6 +64,10 @@
             android:name=".ReportVehicle"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListViewIntent"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
@@ -70,8 +75,6 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-
-        <activity android:name=".ListViewIntent"></activity>
     </application>
 
 </manifest>

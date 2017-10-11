@@ -40,6 +40,25 @@ public class DatabaseHelper extends SQLiteOpenHelper{
         super(context, DATABASE_NAME, null, 1);
     }
 
+//    References for Setting up a Local Database
+//    1st Tutorial: Android SQLite Database Tutorial 1 # Introduction + Creating Database and Tables (Part 1)
+//    Link: https://www.youtube.com/watch?v=cp2rL3sAFmI
+//
+//            2nd Tutorial: Android SQLite Database Tutorial 2 # Introduction + Creating Database and Tables (Part 2)
+//    Link: https://www.youtube.com/watch?v=p8TaTgr4uKM
+//
+//            3rd Tutorial: Android SQLite Database Tutorial 3 # Insert values to SQLite Database table using Android
+//    Link: https://www.youtube.com/watch?v=T0ClYrJukPA
+//
+//            4th Tutorial: Android SQLite Database Tutorial 4 # Show SQLite Database table Values using Android
+//    Link: https://www.youtube.com/watch?v=KUq5wf3Mh0c
+//
+//            5th Tutorial: Android SQLite Database Tutorial 5 # Update values in SQLite Database table using Android
+//    Link: https://www.youtube.com/watch?v=PA4A9IesyCg
+
+//    Reference for SQLite Timestamp
+//    https://stackoverflow.com/questions/381371/sqlite-current-timestamp-is-in-gmt-not-the-timezone-of-the-machine
+
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         //Create VEHICLES table

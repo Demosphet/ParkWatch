@@ -109,6 +109,22 @@ public class ListViewIntent extends AppCompatActivity implements OnMapReadyCallb
 
     }
 
+//    Check references below for GoogleMap implementations
+//    Name: Android Maps: Part 1: Basic Maps
+//    Link:https://www.youtube.com/watch?v=lchyOhPREh4
+//
+//    Name: Google Documentation: Android - Maps Android API
+//    Link: https://developers.google.com/maps/documentation/android-api/start
+//
+//    Name: Android Maps: Part 2: More Features
+//    Link: https://www.youtube.com/watch?v=Z3mKhMkdUFk
+//
+//    Name: cannot be cast to com.google.android.gms.location.LocationListener exception in android
+//    Link: https://stackoverflow.com/questions/39199250/cannot-be-cast-to-com-google-android-gms-location-locationlistener-exception-in
+//
+//    Name: Android Maps: Part 3: Markers
+//    Link: https://www.youtube.com/watch?v=k253ec4m33A
+
     private void initMap(){
         MapFragment mapFragment = (MapFragment) getFragmentManager().findFragmentById(R.id.fragment);
         mapFragment.getMapAsync(this);

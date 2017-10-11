@@ -105,6 +105,14 @@ public class ReportVehicle extends AppCompatActivity {
         configureButton();
         addDataFunction();
 
+//        References for Bottom Navigation Bar
+//        First Tutorial:
+//        Android Studio Tutorial - Bottom Navigation View
+//        https://www.youtube.com/watch?v=wcE7IIHKfRg&t=131s
+//
+//        Second Tutorial:
+//        Bottom Navigation Bar with Activities - Android Advanced Tutorial #6
+//        https://www.youtube.com/watch?v=xyGrdOqseuw&t=97s
 
         //Declaring the bottom navigation bar elements
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
@@ -243,7 +251,24 @@ public class ReportVehicle extends AppCompatActivity {
     }
 
 
-    //Capturing an image and showing a preview within the application
+//    Capturing an image and showing a preview within the application
+//    Tutorial Name: Use camera in Android Studio w/ Implicit Intent, ImageView
+//    Link: https://www.youtube.com/watch?v=QIbOBrO9OEA
+//
+//    Tutorial Name: Save Photo from Camera in Android, Fix NullPointerException
+//    Link: https://www.youtube.com/watch?v=IMomzqwTuKA&index=9&list=PL73qvSDlAVVh5MO1Bfujfb_SDPABjJ2BY
+//
+//    Site Name: android.os.FileUriExposedException: file:///storage/emulated/0/test.txt exposed beyond app through Intent.getData()
+//    Link: https://stackoverflow.com/questions/38200282/android-os-fileuriexposedexception-file-storage-emulated-0-test-txt-exposed
+//
+//    Name: Improve camera functionality to save images and set permissions
+//    Link: https://github.com/Mr4D/TakeOff/commit/09b1f25ef65f73a3316719cfe5ed413210901707
+//
+//    Tutorial Name: Runtime permissions in Android, why the camera crashes app
+//    Link: https://www.youtube.com/watch?v=EGGj2g3EeUQ&t=0s
+//
+//    Name: Cannot resolve Manifest.permission.ACCESS_FINE_LOCATION
+//    Link: https://stackoverflow.com/questions/34139048/cannot-resolve-manifest-permission-access-fine-location
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
